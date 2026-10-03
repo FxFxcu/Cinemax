@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cinemax</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+    <!-- Ícono SVG del botón de la presentación -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <symbol id="ticket" viewBox="0 0 24 24"><path d="M3 9V6h18v3a3 3 0 0 0 0 6v3H3v-3a3 3 0 0 0 0-6zM14 6v12"/></symbol>
+        </defs>
+    </svg>
 
     <!------------------------ BARRA DE NAVEGACIÓN. ------------------------>
     <nav class="nav" aria-label="Navegación principal">
@@ -26,7 +33,41 @@
             <a class="btn" href="#">Crear cuenta</a>
         </div>
     </nav>
-    
-    
+
+    <!------------------------ PRESENTACIÓN. ------------------------>
+    <header class="hero" id="inicio">
+
+        <!-- Video de fondo + degradados + barra de 10 segundos -->
+        <div class="art" id="sArt" role="img" aria-label="Video de la película destacada">
+            <span id="sName" hidden></span>
+            <video id="sVid" muted playsinline loop preload="auto"
+                disablepictureinpicture disableremoteplayback
+                controlslist="nodownload noplaybackrate nofullscreen"
+                tabindex="-1" aria-hidden="true"></video>
+            <i class="bar" id="sBar"></i>
+        </div>
+
+        <!-- Contenido sobre el video (lado izquierdo) -->
+        <div class="wrap hero-in">
+            <div class="slide">
+                <span class="tag" id="sTag"></span>
+                <h1 id="sTit">Avengers Doomsday</h1>
+                <div class="info" id="sInf"></div>
+                <p id="sTxt"></p>
+                <div class="acts">
+                    <a class="btn" href="#cartelera"><svg class="i"><use href="#ticket"/></svg> Comprar entradas</a>
+                </div>
+            </div>
+
+            <!-- Control manual del carrusel -->
+            <div class="ctrl">
+                <button id="prev" aria-label="Película anterior">&#8249;</button>
+                <div class="dots" id="dots"></div>
+                <button id="next" aria-label="Película siguiente">&#8250;</button>
+            </div>
+        </div>
+    </header>
+
+    <script src="javascript/main.js"></script>
 </body>
 </html>
