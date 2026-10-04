@@ -137,3 +137,34 @@ $('#gen').addEventListener('click', (e) => {
 
 drawGen();
 drawCart();
+
+/* ======================= PREVENTAS ======================= */
+
+// Películas en preventa:
+// t = título, g = género, d = duración, f = fecha de estreno,
+// h = primera función, img = afiche (opcional)
+const PRE = [
+  { t: 'Avengers Doomsday', g: 'Ciencia Ficción', d: '2 h 50 min', f: '16 dic', h: '18:00',
+    img: 'img/Cartelera/preventa/avengers-doomsday.webp' },
+  { t: 'Duna: Parte Tres', g: 'Ciencia Ficción', d: '2 h 30 min', f: '17 dic', h: '17:30',
+    img: 'img/Cartelera/preventa/duna-parte-tres.jfif' }
+];
+
+// Dibuja las tarjetas de preventa
+function drawPre() {
+  $('#pre').innerHTML = PRE.map((m, i) => `
+    <article class="pre">
+      <div class="poster" style="background:${cols[(i * 3) % 6]}">
+        ${m.img ? `<img src="${m.img}" alt="Afiche de ${m.t}" loading="lazy" onerror="this.remove()">` : ''}
+      </div>
+      <div class="pre-info">
+        <span class="badge">Preventa abierta</span>
+        <h3>${m.t}</h3>
+        <p class="pre-meta">${m.g} · ${m.d}</p>
+        <p class="pre-meta">Estreno ${m.f} · Funciones desde ${m.h}</p>
+        <a class="btn" href="#"><svg class="i"><use href="#ticket"/></svg> Reservar entradas</a>
+      </div>
+    </article>`).join('');
+}
+
+drawPre();
