@@ -475,3 +475,48 @@ h2 {
 .pre-info .btn {
   margin-top: auto;
 }
+
+/* ======================= FOOTER ======================= */
+footer {
+  padding: 40px 0 20px;
+  border-top: 3px solid var(--red);
+  background: #050505;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Columnas: se acomodan solas según el ancho de la pantalla */
+.fg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 28px;
+}
+
+.fg .logo {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.fg h4 {
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.fg p {
+  margin: 0 0 8px;
+}
+
+.fg a:hover {
+  color: #fff;
+}
+
+/* Línea final con los derechos */
+.copy {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: #7a7a7a;
+  font-size: 13px;
+}
