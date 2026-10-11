@@ -168,3 +168,32 @@ function drawPre() {
 }
 
 drawPre();
+
+
+/* ======================= AYUDA (PREGUNTAS FRECUENTES) ======================= */
+
+// Preguntas y respuestas. Para agregar otra, copia una línea y cambia el texto.
+const FAQ = [
+  { q: '¿Cómo compro entradas?',
+    a: 'Elige la película en la cartelera, selecciona el horario y confirma la compra.' },
+  { q: '¿Cómo funcionan las preventas?',
+    a: 'Puedes reservar tus entradas antes del estreno y elegir tu butaca con anticipación.' },
+  { q: '¿Hay descuentos?',
+    a: 'Sí, los miércoles tienes entradas a precio reducido. Consulta las promociones vigentes en la sala.' }
+];
+
+// Dibuja las preguntas
+$('#acc').innerHTML = FAQ.map((f, i) => `
+  <div class="acc">
+    <button aria-expanded="false" aria-controls="p${i}">${f.q}</button>
+    <div class="acc-panel" id="p${i}" hidden>${f.a}</div>
+  </div>`).join('');
+
+// Abre o cierra la respuesta al hacer clic en la pregunta
+$('#acc').addEventListener('click', (e) => {
+  const b = e.target.closest('button');
+  if (!b) return;
+  const abierta = b.getAttribute('aria-expanded') === 'true';
+  b.setAttribute('aria-expanded', !abierta);
+  $('#' + b.getAttribute('aria-controls')).hidden = abierta;
+});
