@@ -1,9 +1,10 @@
 const $ = (s) => document.querySelector(s);
 
-// Si la página está dentro de la carpeta paginas/, las rutas necesitan "../" al principio
-const BASE = location.pathname.includes('/paginas/') ? '../' : '';
+// Si la página está dentro de paginas/ las rutas necesitan "../"; dentro de paginas/peliculas/, "../../"
+const BASE = location.pathname.includes('/paginas/peliculas/') ? '../../'
+           : location.pathname.includes('/paginas/') ? '../' : '';
 
-// Colores de fondo de los afiches (se repiten en orden). Los usan la cartelera y las preventas.
+// Colores de fondo de los afiches (se ven mientras carga la imagen). Los usan la cartelera y las preventas.
 const cols = ['#1c1c1c', '#261012', '#181818', '#2a1214', '#231315', '#2a0a0c'];
 
 
@@ -91,46 +92,56 @@ if ($('#sVid')) {
 }
 
 
+/* ======================= LISTA DE PELÍCULAS EN CARTELERA =======================
+   La usan la cartelera (tarjetas) y el carrusel "Más en cartelera" de cada película.
+   url = ruta desde la raíz del proyecto (cada página le antepone su BASE).
+   Aquí van solo los datos de la tarjeta; la información completa vive en el HTML de cada película. */
+const CART = [
+  { t: 'El gato con sombrero', g: 'Animación', r: 'ATP', d: '1 h 31 min', h: ['16:30', '19:00', '21:45'], img: 'img/Cartelera/El_gato_con_sombrero.webp', url: 'paginas/peliculas/gato-sombrero.html' },
+  { t: 'Spider-man: un nuevo día', g: 'Acción', r: '+13', d: '2 h 30 min', h: ['15:00', '18:15', '21:00'], img: 'img/Cartelera/spider-man.avif', url: 'paginas/peliculas/Spider-man.html' },
+  { t: 'Resident evil: noche cero', g: 'Terror', r: '+16', d: '1 h 34 min', h: ['17:00', '20:30', '23:00'], img: 'img/Cartelera/resident-evil.jfif', url: 'paginas/peliculas/resident-evil.html' },
+  { t: 'Coyote vs acme', g: 'Comedia', r: 'ATP', d: '1 h 50 min', h: ['14:30', '17:30', '20:15'], img: 'img/Cartelera/Coyote-vs-acme.webp', url: 'paginas/peliculas/coyote-vs-acme.html' },
+  { t: 'La noche del demonio: están entre nosotros', g: 'Terror', r: '+16', d: '1 h 46 min', h: ['18:00', '20:45', '23:15'], img: 'img/Cartelera/la-noche-del-demonio.jfif', url: 'paginas/peliculas/noche-demonio.html' },
+  { t: 'Godzilla minus zero', g: 'Ciencia Ficción', r: '+16', d: '1 h 38 min', h: ['15:30', '18:00', '20:30'], img: 'img/Cartelera/godzilla-minus-zero.webp', url: 'paginas/peliculas/Godzilla-MZ.html' },
+  { t: 'Vertigo: punto muerto', g: 'Thriller', r: '+13', d: '2 h 05 min', h: ['15:30', '18:00', '20:30'], img: 'img/Cartelera/vertigo2.jpg', url: 'paginas/peliculas/vertigo.html' },
+  { t: 'Avengers: endgame encore', g: 'Ciencia Ficción', r: '+13', d: '3 h 05 min', h: ['15:30', '18:00', '20:30'], img: 'img/Cartelera/avengers-endgame-encore.png', url: 'paginas/peliculas/Avengers-EE.html' },
+  { t: 'Clayface', g: 'Terror', r: '+16', d: '2 h 00 min', h: ['15:30', '18:00', '20:30'], img: 'img/Cartelera/clayface.webp', url: 'paginas/peliculas/Clayface.html' }
+];
+
+
 /* ======================= CARTELERA ======================= */
 if ($('#cart')) {
 
-  // Películas: t = título, g = género, r = clasificación, d = duración, h = horarios, img = afiche
-  const CART = [
-    { t: 'El gato con sombrero', g: 'Animación', r: 'ATP', d: '1 h 31 min', h: ['16:30', '19:00', '21:45'], img: 'img/Cartelera/El_gato_con_sombrero.webp' },
-    { t: 'Spider-man: un nuevo día', g: 'Acción', r: '+13', d: '2 h 30 min', h: ['15:00', '18:15', '21:00'], img: 'img/Cartelera/spider-man.avif' },
-    { t: 'Resident evil: noche cero', g: 'Terror', r: '+16', d: '1 h 34 min', h: ['17:00', '20:30', '23:00'], img: 'img/Cartelera/resident-evil.jfif' },
-    { t: 'Coyote vs acme', g: 'Comedia', r: 'ATP', d: '1 h 50 min', h: ['14:30', '17:30', '20:15'], img: 'img/Cartelera/Coyote-vs-acme.webp' },
-    { t: 'La noche del demonio: están entre nosotros', g: 'Terror', r: '+16', d: '1 h 46 min', h: ['18:00', '20:45', '23:15'], img: 'img/Cartelera/la-noche-del-demonio.jfif' },
-    { t: 'godzilla minus zero', g: 'Ciencia Ficción', r: '+16', d: '1 h 38 min', h: ['15:30', '18:00', '20:30'], img: 'img/Cartelera/godzilla-minus-zero.webp' },
-    { t: 'vertigo:punto muerto', g: 'Thriller', r: '+13', d: '2 h 05 min', h: ['15:30', '18:00', '20:30'], img: 'img/Cartelera/vertigo2.jpg' },
-    { t: 'Avengers: endgame encore', g: 'Ciencia Ficción', r: '+13', d: '3 h 05 min', h: ['15:30', '18:00', '20:30'], img: 'img/Cartelera/avengers-endgame-encore.png' },
-    { t: 'Clayface', g: 'Terror', r: '+16', d: '2 h 00 min', h: ['15:30', '18:00', '20:30'], img: 'img/Cartelera/clayface.webp' }
-  ];
-
-  let gen = 'Todas';   // género seleccionado
+  let gen = 'Todas'; // género seleccionado
 
   // Dibuja las tarjetas según el género elegido
   function drawCart() {
     const lista = CART.filter(m => gen === 'Todas' || m.g === gen);
     $('#cart').innerHTML = lista.length
       ? lista.map((m, i) => `
-          <div class="card">
-            <div class="poster" style="background:${cols[i % cols.length]}">
-              ${m.img ? `<img src="${BASE}${m.img}" alt="Afiche de ${m.t}" loading="lazy" onerror="this.remove()">` : ''}
-              <span class="rate">${m.r}</span>
-              <span class="ptitle">${m.t}</span>
+          <div class="col s6 m4 l3">
+            <div class="card hoverable movie-card" data-url="${m.url}" style="cursor: pointer;">
+              <div class="card-image cx-poster" style="background:${cols[i % cols.length]}">
+                ${m.img ? `<img src="${BASE}${m.img}" alt="Afiche de ${m.t}" loading="lazy" onerror="this.remove()">` : ''}
+                <span class="cx-rate">${m.r}</span>
+              </div>
+              <div class="card-content">
+                <span class="card-title">${m.t}</span>
+                <p>${m.g} · ${m.d}</p>
+              </div>
+              <div class="card-action">
+                ${m.h.map(x => `<span class="chip cx-time">${x}</span>`).join('')}
+              </div>
             </div>
-            <div class="meta">${m.g} · ${m.d}</div>
-            <div class="times">${m.h.map(x => `<span>${x}</span>`).join('')}</div>
           </div>`).join('')
-      : '<p class="empty">No hay películas de este género por ahora.</p>';
+      : '<div class="col s12"><p class="cx-empty">No hay películas de este género por ahora.</p></div>';
   }
 
-  // Dibuja los botones de género (se generan solos a partir de la lista)
+  // Dibuja los chips de género
   function drawGen() {
     const generos = ['Todas', ...new Set(CART.map(m => m.g))];
     $('#gen').innerHTML = generos.map(g =>
-      `<button data-g="${g}" aria-pressed="${g === gen}">${g}</button>`).join('');
+      `<button type="button" class="chip${g === gen ? ' active' : ''}" data-g="${g}" aria-pressed="${g === gen}">${g}</button>`).join('');
   }
 
   // Al hacer clic en un género, filtra las películas
@@ -140,6 +151,20 @@ if ($('#cart')) {
     gen = b.dataset.g;
     drawGen();
     drawCart();
+  });
+
+  // Evento para hacer clic en la tarjeta y abrir su página correspondiente
+  $('#cart').addEventListener('click', (e) => {
+    const card = e.target.closest('.movie-card');
+    if (!card) return;
+
+    // Si hacen clic en un horario, evitamos que abra la página (opcional)
+    if (e.target.closest('.cx-time')) return;
+
+    const movieUrl = card.dataset.url;
+    
+    // Redirige a la página específica de esa película usando el BASE correcto
+    window.location.href = BASE + movieUrl;
   });
 
   drawGen();
@@ -154,58 +179,45 @@ if ($('#pre')) {
   // h = primera función, img = afiche (opcional)
   const PRE = [
     { t: 'Avengers Doomsday', g: 'Ciencia Ficción', d: '2 h 50 min', f: '16 dic', h: '18:00',
-      img: 'img/Cartelera/preventa/avengers-doomsday.webp' },
+      img: 'img/Cartelera/preventa/avengers-doomsday.webp',
+      url: 'paginas/peliculas/Avengers-D.html' },
     { t: 'Duna: Parte Tres', g: 'Ciencia Ficción', d: '2 h 30 min', f: '17 dic', h: '17:30',
-      img: 'img/Cartelera/preventa/duna-parte-tres.jfif' }
+      img: 'img/Cartelera/preventa/duna-parte-tres.jfif',
+      url: 'paginas/peliculas/Duna-PT.html' }
   ];
 
-  // Dibuja las tarjetas de preventa
+  // Dibuja las tarjetas de preventa (Materialize: card horizontal)
   function drawPre() {
     $('#pre').innerHTML = PRE.map((m, i) => `
-      <article class="pre">
-        <div class="poster" style="background:${cols[(i * 3) % cols.length]}">
-          ${m.img ? `<img src="${BASE}${m.img}" alt="Afiche de ${m.t}" loading="lazy" onerror="this.remove()">` : ''}
+      <div class="col s12 l6">
+        <div class="card horizontal cx-pre">
+          <div class="card-image" style="background:${cols[(i * 3) % cols.length]}">
+            ${m.img ? `<img src="${BASE}${m.img}" alt="Afiche de ${m.t}" loading="lazy" onerror="this.remove()">` : ''}
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <span class="chip cx-badge">Preventa abierta</span>
+              <span class="card-title">${m.t}</span>
+              <p>${m.g} · ${m.d}</p>
+              <p>Estreno ${m.f} · Funciones desde ${m.h}</p>
+            </div>
+            <div class="card-action">
+              <a class="btn waves-effect waves-light" href="${BASE}${m.url}">
+                <i class="material-icons left">confirmation_number</i>Reservar entradas
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="pre-info">
-          <span class="badge">Preventa abierta</span>
-          <h3>${m.t}</h3>
-          <p class="pre-meta">${m.g} · ${m.d}</p>
-          <p class="pre-meta">Estreno ${m.f} · Funciones desde ${m.h}</p>
-          <a class="btn" href="#"><svg class="i"><use href="#ticket"/></svg> Reservar entradas</a>
-        </div>
-      </article>`).join('');
+      </div>`).join('');
   }
 
   drawPre();
 }
 
 
-/* ======================= AYUDA (PREGUNTAS FRECUENTES) ======================= */
-if ($('#acc')) {
-
-  // Preguntas y respuestas. Para agregar otra, copia una línea y cambia el texto.
-  const FAQ = [
-    { q: '¿Cómo compro entradas?',
-      a: 'Elige la película en la cartelera, selecciona el horario y confirma la compra.' },
-    { q: '¿Cómo funcionan las preventas?',
-      a: 'Puedes reservar tus entradas antes del estreno y elegir tu butaca con anticipación.' },
-    { q: '¿Hay descuentos?',
-      a: 'Sí, los miércoles tienes entradas a precio reducido. Consulta las promociones vigentes en la sala.' }
-  ];
-
-  // Dibuja las preguntas
-  $('#acc').innerHTML = FAQ.map((f, i) => `
-    <div class="acc">
-      <button aria-expanded="false" aria-controls="p${i}">${f.q}</button>
-      <div class="acc-panel" id="p${i}" hidden>${f.a}</div>
-    </div>`).join('');
-
-  // Abre o cierra la respuesta al hacer clic en la pregunta
-  $('#acc').addEventListener('click', (e) => {
-    const b = e.target.closest('button');
-    if (!b) return;
-    const abierta = b.getAttribute('aria-expanded') === 'true';
-    b.setAttribute('aria-expanded', !abierta);
-    $('#' + b.getAttribute('aria-controls')).hidden = abierta;
-  });
+/* ======================= MATERIALIZE ======================= */
+// Menú lateral (sidenav): el nav se convierte en sidebar en celular y tablet
+if (window.M) {
+  M.Sidenav.init(document.querySelectorAll('.sidenav'));
 }
+

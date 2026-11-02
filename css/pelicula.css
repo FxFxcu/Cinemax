@@ -1,0 +1,766 @@
+/* ==========================================================================
+   1. VARIABLES, CONFIGURACIÓN GLOBAL Y BASE
+   ========================================================================== */
+:root {
+  --bg: #0a0a0a;
+  --line: #2a2a2a;
+  --text: #f2f2f2;
+  --muted: #a8a8a8;
+  --red: #e50914;
+  --red2: #ff5a63;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+html {
+  scroll-padding-top: 70px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--red2);
+  outline-offset: 2px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+section {
+  padding: 44px 0;
+}
+
+
+/* ==========================================================================
+   2. TIPOGRAFÍA Y COMPONENTES COMUNES (Botones, Títulos, Tags)
+   ========================================================================== */
+h1 {
+  margin: 0 0 12px;
+  font-size: clamp(30px, 5vw, 48px);
+  font-weight: 600;
+  line-height: 1.08;
+}
+
+h2 {
+  margin: 0 0 22px;
+  padding-left: 12px;
+  border-left: 4px solid var(--red);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.tag {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 2px 10px;
+  border: 1px solid var(--red);
+  border-radius: 4px;
+  color: var(--red2);
+  font-size: 12px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--red);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.btn:hover {
+  background: #c40812;
+}
+
+.btn2 {
+  display: inline-block;
+  padding: 9px 18px;
+  border: 1px solid var(--red);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+
+.btn2:hover {
+  background: rgba(229, 9, 20, .2);
+}
+
+
+/* ==========================================================================
+   3. NAVEGACIÓN (NAVBAR)
+   ========================================================================== */
+.nav {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  height: 60px;
+  padding: 0 max(20px, calc((100% - 1096px) / 2));
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--red);
+}
+
+.links {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.links a:hover,
+.links a.on {
+  color: #fff;
+}
+
+.auth {
+  display: flex;
+  gap: 10px;
+}
+
+
+/* ==========================================================================
+   4. SECCIÓN PRINCIPAL DE PELÍCULA (Hero & Poster)
+   ========================================================================== */
+.mv-top {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background: #150506;
+}
+
+.mv-bg {
+  position: absolute;
+  inset: -60px;
+  filter: blur(50px) brightness(.9);
+  transform: scale(1.1);
+  transition: background .4s;
+}
+
+.mv-top::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, .5);
+}
+
+.mv-in {
+  position: relative;
+  z-index: 2;
+  padding-top: 28px;
+  padding-bottom: 48px;
+}
+
+.mv-back {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.mv-back:hover {
+  color: #fff;
+}
+
+.mv-row {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+  margin-top: 20px;
+}
+
+.mv-poster {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 2/3;
+  display: flex;
+  align-items: flex-end;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .6);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.mv-poster .rate {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 1px 8px;
+  border-radius: 4px;
+  background: var(--red);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.mv-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.mv-pill {
+  padding: 3px 12px;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 20px;
+  color: #d8d8d8;
+  font-size: 13px;
+}
+
+.mv-pill.r {
+  border-color: var(--red);
+  background: var(--red);
+  color: #fff;
+  font-weight: 600;
+}
+
+.mv-sin {
+  max-width: 58ch;
+  margin: 0 0 22px;
+  color: #e2e2e2;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+
+/* ==========================================================================
+   5. FICHA TÉCNICA
+   ========================================================================== */
+.mv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px 28px;
+  margin: 0;
+}
+
+.mv-item dt {
+  margin: 0 0 2px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.mv-item dd {
+  margin: 0;
+}
+
+.mv-item.full {
+  grid-column: 1/-1;
+}
+
+.mv-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mv-chip {
+  padding: 3px 12px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #151515;
+  font-size: 14px;
+}
+
+
+/* ==========================================================================
+   6. SELECTOR DE FUNCIONES (Días, Horarios y Proceso de Compra)
+   ========================================================================== */
+.hint {
+  margin: -10px 0 18px 16px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.days {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 72px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text);
+}
+
+.day small {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.day b {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.day:hover {
+  border-color: var(--red);
+}
+
+.day.on {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.day.on small {
+  color: #fff;
+}
+
+.day.lock {
+  opacity: .45;
+  border-style: dashed;
+}
+
+.day.lock:hover {
+  border-color: var(--line);
+}
+
+.msg {
+  min-height: 22px;
+  margin: 0 0 14px;
+  color: var(--red2);
+  font-size: 14px;
+}
+
+.lbl {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.times {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.times a {
+  padding: 6px 14px;
+  border: 1px solid var(--red);
+  border-radius: 4px;
+  color: var(--red2);
+  font-size: 14px;
+}
+
+.times a:hover {
+  background: rgba(229, 9, 20, .2);
+}
+
+.times button {
+  padding: 6px 14px;
+  border: 1px solid var(--red);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--red2);
+  font-size: 14px;
+}
+
+.times button:hover {
+  background: rgba(229, 9, 20, .2);
+}
+
+.times button.on {
+  background: var(--red);
+  color: #fff;
+}
+
+.times button:disabled {
+  opacity: .4;
+  border-color: var(--line);
+  color: var(--muted);
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.buy {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  align-items: end;
+  margin-top: 22px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #151515;
+}
+
+.buy[hidden] {
+  display: none;
+}
+
+.k {
+  margin: 0 0 2px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.v {
+  margin: 0;
+  font-weight: 600;
+}
+
+.v.big {
+  font-size: 26px;
+  color: var(--red);
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.qty button {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.qty button:hover {
+  border-color: var(--red);
+}
+
+.qty b {
+  min-width: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+
+/* ==========================================================================
+   7. SECCIÓN "MÁS EN CARTELERA" Y CARRUSEL
+   ========================================================================== */
+.mas {
+  margin-top: 56px;
+  padding: 64px 0 76px;
+  background: #151515;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+.mas-t {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.mas-t small {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--red2);
+  font-size: 12px;
+  letter-spacing: .3em;
+}
+
+.mas-t p {
+  margin: 0;
+  font-size: clamp(22px, 3.4vw, 32px);
+  font-weight: 600;
+}
+
+.mas-t i {
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin: 14px auto 0;
+  border-radius: 2px;
+  background: var(--red);
+}
+
+.mas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 200px));
+  gap: 20px;
+  justify-content: center;
+}
+
+.mc {
+  display: block;
+  flex: 0 0 calc((100% - (var(--n) - 1) * var(--g)) / var(--n));
+}
+
+.mc .mp {
+  position: relative;
+  aspect-ratio: 2/3;
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: border-color .2s, transform .2s;
+}
+
+.mc:hover .mp {
+  border-color: var(--red);
+  transform: translateY(-4px);
+}
+
+.mc .rate {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 1px 8px;
+  border-radius: 4px;
+  background: var(--red);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.mc .mm {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.car {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 60px;
+  --n: 5;
+  --g: 18px;
+}
+
+.car-v {
+  overflow: hidden;
+  padding: 8px 0;
+}
+
+.car-t {
+  display: flex;
+  gap: var(--g);
+  transition: transform .6s ease;
+}
+
+.car-t.no {
+  transition: none;
+}
+
+.car-b {
+  position: absolute;
+  top: 36%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 50%;
+  background: rgba(10, 10, 10, .8);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.car-b:hover {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.car-b.prev {
+  left: 0;
+}
+
+.car-b.next {
+  right: 0;
+}
+
+.now {
+  display: none;
+  margin-top: 6px;
+  padding: 1px 9px;
+  border: 1px solid var(--red);
+  border-radius: 4px;
+  color: var(--red2);
+  font-size: 12px;
+}
+
+.mc.cur .now {
+  display: inline-block;
+}
+
+.mc.cur .mp {
+  border-color: var(--red);
+}
+
+.mas-f {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.otras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.otras a {
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.otras a.on {
+  border-color: var(--red);
+  background: var(--red);
+  color: #fff;
+}
+
+
+/* ==========================================================================
+   8. TOAST, FOOTER Y COPYRIGHT
+   ========================================================================== */
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  transform: translate(-50%, 30px);
+  background: var(--red);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: .25s;
+  max-width: 90vw;
+}
+
+#toast.on {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+footer {
+  background: #050505;
+  border-top: 3px solid var(--red);
+  padding: 32px 0 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.copy {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  color: #7a7a7a;
+  font-size: 13px;
+}
+
+
+/* ==========================================================================
+   9. MEDIA QUERIES (Responsivo)
+   ========================================================================== */
+@media (max-width: 900px) {
+  .car {
+    --n: 3;
+    padding: 0 52px;
+  }
+  .links {
+    display: none;
+  }
+  .wrap {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .mv-row {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .mv-poster {
+    max-width: 240px;
+  }
+  .auth .btn2 {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .car {
+    --n: 2;
+    padding: 0 44px;
+  }
+}
+
+/* ==========================================================================
+   9. AFICHES CON IMAGEN (portada y carrusel)
+   ========================================================================== */
+.mv-poster img,
+.mc .mp img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.mv-poster .rate,
+.mc .rate {
+  z-index: 1;
+}
