@@ -27,7 +27,7 @@
                     <li><a href="../../index.html">Inicio</a></li>
                     <li><a href="../cartelera.html">Cartelera</a></li>
                     <li><a href="../../index.html#estrenos">Estrenos</a></li>
-                    <li><a href="../../index.html#preventas">Preventas</a></li>
+                    <li><a href="../preventas.html">Preventas</a></li>
                     <li><a href="../ayuda.html">Ayuda</a></li>
                     <li><a href="#" class="btn waves-effect cx-ghost">Iniciar sesión</a></li>
                     <li><a href="#" class="btn waves-effect waves-light">Crear cuenta</a></li>
@@ -42,14 +42,14 @@
         <li><a href="../../index.html"><i class="material-icons">home</i>Inicio</a></li>
         <li><a href="../cartelera.html"><i class="material-icons">movie</i>Cartelera</a></li>
         <li><a href="../../index.html#estrenos"><i class="material-icons">new_releases</i>Estrenos</a></li>
-        <li><a href="../../index.html#preventas"><i class="material-icons">local_activity</i>Preventas</a></li>
+        <li><a href="../preventas.html"><i class="material-icons">local_activity</i>Preventas</a></li>
         <li><a href="../ayuda.html"><i class="material-icons">help_outline</i>Ayuda</a></li>
         <li><div class="divider"></div></li>
         <li><a href="#"><i class="material-icons">account_circle</i>Iniciar sesión</a></li>
         <li><a href="#"><i class="material-icons">person_add</i>Crear cuenta</a></li>
     </ul>
 
-    <!------------------------ PÁGINA DE PELÍCULA. Todo se dibuja desde "infoPeli" (más abajo). ------------------------>
+    <!------------------------ PÁGINA DE PELÍCULA. ------------------------>
     <main id="mv">
 
         <!-- 1. Afiche + sinopsis -->
@@ -80,7 +80,7 @@
             </div>
         </section>
 
-        <!-- 3. Elige tu función: fechas (7 días) + horarios -->
+        <!-- 3. Elige tu función. -->
         <section id="mvFun" style="padding-top:0">
             <div class="wrap">
                 <h2>Elige tu función</h2>
@@ -90,7 +90,6 @@
                 <p class="lbl">Horarios</p>
                 <div class="times" id="mvTimes"></div>
 
-                <!-- Aparece al elegir un horario -->
                 <div class="buy" id="mvBuy" hidden>
                     <div>
                         <p class="k">Tu función</p>
@@ -132,7 +131,7 @@
         </section>
     </main>
 
-    <!------------------------ FOOTER (Materialize: page-footer). ------------------------>
+    <!------------------------ FOOTER. ------------------------>
     <footer class="page-footer">
         <div class="container">
             <div class="row">
@@ -146,7 +145,7 @@
                     <ul>
                         <li><a href="../cartelera.html">Cartelera</a></li>
                         <li><a href="../../index.html#estrenos">Estrenos</a></li>
-                        <li><a href="../../index.html#preventas">Preventas</a></li>
+                        <li><a href="../preventas.html">Preventas</a></li>
                     </ul>
                 </div>
 
@@ -197,7 +196,6 @@
         };
     </script>
 
-    <!-- 2. SCRIPTS GENERALES (iguales en todas las películas) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="../../javascript/main.js"></script>
     <script src="../../javascript/peliculas.js"></script>

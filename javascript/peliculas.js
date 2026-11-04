@@ -1,24 +1,4 @@
-/* ==========================================================================
-   PELICULAS.JS — FUNCIONES GENERALES DE LA PÁGINA DE UNA PELÍCULA
-   --------------------------------------------------------------------------
-   Este archivo NO tiene información de ninguna película.
-   Cada película define sus propios datos en su HTML, dentro de:
-
-       <script> const infoPeli = { ... }; </script>
-
-   (ese bloque va ANTES de cargar este archivo). Acá solo están las funciones
-   que arman la página a partir de esos datos: portada, ficha técnica,
-   calendario de funciones, horarios, compra y carrusel "Más en cartelera".
-
-   Campos que lee de infoPeli (los vacíos simplemente no se muestran):
-     tag, t (título), g (género), r (clasificación), d (duración),
-     idioma, formato, f (estreno), dir (director), reparto [ ],
-     sin (sinopsis), img (afiche, ruta desde la raíz del proyecto),
-     h [ ] (horarios), trailer (URL), extra [ [título, valor], ... ],
-     desde (opcional, 'AAAA-MM-DD': primer día de venta; para preventas)
-
-   Depende de main.js solo para el carrusel (usa la lista CART de la cartelera).
-   ========================================================================== */
+/* ==================================PELICULAS======================================= */
 (function () {
   'use strict';
 
@@ -28,20 +8,18 @@
   }
 
   const m = infoPeli;
-  const ROOT = '../../';                       // estas páginas viven en paginas/peliculas/
-  const COLOR = '#1c1c1c';                     // color de fondo mientras carga el afiche
+  const ROOT = '../../';                      
+  const COLOR = '#1c1c1c';                     
   const DIAS = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
   const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
                  'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-  const MAXD = 7;                              // días habilitados para comprar
-  const EXTRA = 3;                             // días siguientes, bloqueados
+  const MAXD = 7;
+  const EXTRA = 3;
 
   const $id = (id) => document.getElementById(id);
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-
-  /* ======================= AVISO FLOTANTE (TOAST) ======================= */
   let toastTimer;
   function toast(msg) {
     let t = $id('toast');
@@ -70,7 +48,6 @@
       bg.style.backgroundPosition = 'center';
     }
 
-    // Afiche: si la imagen no carga, queda el título sobre el color de fondo
     const poster = $id('mvPoster');
     poster.style.background = COLOR;
     poster.innerHTML = (m.r ? '<span class="rate">' + esc(m.r) + '</span>' : '') + esc(m.t);
@@ -90,7 +67,6 @@
       (m.r ? '<span class="mv-pill r">' + esc(m.r) + '</span>' : '') +
       [m.g, m.d, m.idioma].filter(Boolean).map((x) => '<span class="mv-pill">' + esc(x) + '</span>').join('');
 
-    // Tráiler: abre el enlace si existe, si no avisa
     const trl = $id('mvTrailer');
     if (m.trailer && m.trailer !== '#') {
       trl.href = m.trailer;
@@ -124,11 +100,10 @@
 
 
   /* ======================= CALENDARIO, HORARIOS Y COMPRA ======================= */
-  let sel = 0, selT = null;                    // día elegido (0 = hoy) y horario elegido
+  let sel = 0, selT = null;
   const hoy = new Date();
   hoy.setHours(0, 0, 0, 0);
 
-  // Preventa: si "desde" es una fecha futura, el calendario arranca ese día
   let inicio = hoy;
   if (m.desde) {
     const p = m.desde.split('-').map(Number);
@@ -161,7 +136,6 @@
   function drawTimes() {
     const horas = m.h || [];
     const n = new Date(), ahora = n.getHours() * 60 + n.getMinutes();
-    // una función de hoy que ya empezó no se puede elegir
     const pasada = (x) => { const p = x.split(':').map(Number); return sel === 0 && !preventa && p[0] * 60 + p[1] <= ahora; };
 
     $id('mvTimes').innerHTML = horas.map((x) =>
@@ -191,7 +165,6 @@
   }
 
   $id('mvFun').addEventListener('click', (e) => {
-    // Elegir un día
     const d = e.target.closest('[data-d]');
     if (d) {
       const i = +d.dataset.d;
@@ -207,7 +180,6 @@
       return;
     }
 
-    // Elegir un horario
     const t = e.target.closest('[data-t]');
     if (t && !t.disabled) {
       selT = t.dataset.t;
@@ -217,23 +189,20 @@
       return;
     }
 
-    // Ir a la página de entradas (la misma para todas las películas).
-    // Se le pasan por la URL: película, fecha y horario elegidos.
     if (e.target.closest('#mvGo')) {
       const iso = (d) => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
       const datos = new URLSearchParams({
         peli: m.t,
         fecha: iso(addD(sel)),
         hora: selT,
-        volver: location.pathname.split('/').pop()   // para el botón "Volver a la película"
+        volver: location.pathname.split('/').pop()
       });
       location.href = '../compras/entradas.html?' + datos.toString();
     }
   });
 
 
-  /* ======================= CARRUSEL "MÁS EN CARTELERA" ======================= */
-  // La lista de películas sale de CART (main.js), la misma de la cartelera.
+  /* ======================= CARRUSEL ======================= */
   function initCarrusel() {
     const track = $id('mvTrack');
     if (!track || typeof CART === 'undefined') return;
@@ -252,7 +221,6 @@
         '<span class="now">Estás viendo esta</span>' +
       '</a>';
 
-    // Se repiten las primeras para que el carrusel dé la vuelta sin cortes
     track.innerHTML = CART.concat(CART.slice(0, 5)).map(card).join('');
 
     let ci = 0, busy = false, timer;
@@ -288,8 +256,6 @@
     auto();
   }
 
-
-  /* ======================= INICIO ======================= */
   drawHero();
   drawFicha();
   drawFunciones();

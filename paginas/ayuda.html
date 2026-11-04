@@ -5,35 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../img/Cartelera/logo/1791932888094.png">
     <title>Cinemax | Ayuda</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="../css/ayuda.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
-    <!-- Ícono SVG del botón de la presentación -->
-    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-        <defs>
-            <symbol id="ticket" viewBox="0 0 24 24"><path d="M3 9V6h18v3a3 3 0 0 0 0 6v3H3v-3a3 3 0 0 0 0-6zM14 6v12"/></symbol>
-        </defs>
-    </svg>
+    <!------------------------ BARRA DE NAVEGACIÓN (Materialize: navbar + sidenav). ------------------------>
+    <div class="navbar-fixed">
+        <nav class="cx-nav" aria-label="Navegación principal">
+            <div class="nav-wrapper container">
+                <a href="index.html" class="brand-logo">CINEMAX</a>
 
-    <!------------------------ BARRA DE NAVEGACIÓN. ------------------------>
-    <nav class="nav" aria-label="Navegación principal">
-        <a class="logo" href="#inicio">CINEMAX</a>
+                <a href="#" data-target="sidenav" class="sidenav-trigger hide-on-large-only" aria-label="Abrir menú">
+                    <i class="material-icons">menu</i>
+                </a>
 
-        <div class="links">
-            <a href="#inicio">Inicio</a>
-            <a href="#cartelera">Cartelera</a>
-            <a href="#estrenos">Estrenos</a>
-            <a href="#preventas">Preventas</a>
-            <a href="#multimedia">Tráiler</a>
-            <a href="#faq">Ayuda</a>
-        </div>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="../paginas/cartelera.html">Cartelera</a></li>
+                    <li><a href="../#estrenos">Estrenos</a></li>
+                    <li><a href="../paginas/preventas.html">Preventas</a></li>
+                    <li><a href="../paginas/ayuda.html">Ayuda</a></li>
+                    <li><a href="#" class="btn waves-effect cx-ghost">Iniciar sesión</a></li>
+                    <li><a href="#" class="btn waves-effect waves-light">Crear cuenta</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 
-        <div class="auth">
-            <a class="btn2" href="#">Iniciar sesión</a>
-            <a class="btn" href="#">Crear cuenta</a>
-        </div>
-    </nav>
+    <!-- Menú lateral -->
+    <ul class="sidenav" id="sidenav">
+        <li><div class="cx-side-brand">CINEMAX</div></li>
+        <li><a href="index.html"><i class="material-icons">home</i>Inicio</a></li>
+        <li><a href="paginas/cartelera.html"><i class="material-icons">movie</i>Cartelera</a></li>
+        <li><a href="#estrenos"><i class="material-icons">new_releases</i>Estrenos</a></li>
+        <li><a href="paginas/preventas.html"><i class="material-icons">local_activity</i>Preventas</a></li>
+        <li><a href="paginas/ayuda.html"><i class="material-icons">help_outline</i>Ayuda</a></li>
+        <li><div class="divider"></div></li>
+        <li><a href="#"><i class="material-icons">account_circle</i>Iniciar sesión</a></li>
+        <li><a href="#"><i class="material-icons">person_add</i>Crear cuenta</a></li>
+    </ul>
 
     <!------------------------ AYUDA (PREGUNTAS FRECUENTES). ------------------------>
     
@@ -61,7 +74,7 @@
                     <h4>Explorar</h4>
                     <p><a href="#cartelera">Cartelera</a></p>
                     <p><a href="#estrenos">Estrenos</a></p>
-                    <p><a href="#preventas">Preventas</a></p>
+                    <p><a href="preventas.html">Preventas</a></p>
                 </div>
 
                 <div>

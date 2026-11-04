@@ -1,13 +1,4 @@
-/* ==========================================================================
-   PAGO.JS — PASO 4: PAGO
-   Recibe por la URL todo lo elegido antes (película, fecha, horario, formato,
-   tipo de butaca, butacas y candy) y usa los precios de precios.js.
-   ?peli=...&fecha=2026-11-03&hora=18:15&formato=3D&butaca=D-BOX&asientos=G7,G9
-   &candy=id:cantidad:precio:nombre,...
-
-   IMPORTANTE: es una simulación. No se cobra nada y los datos de la tarjeta
-   no se guardan ni se envían a ningún lado: solo se validan en el navegador.
-   ========================================================================== */
+/* ==============================PAGO================================= */
 (function () {
   'use strict';
   const $ = s => document.querySelector(s);
@@ -16,7 +7,6 @@
   const DIAS = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
   const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 
-  /* ==================== 1. DATOS QUE LLEGAN POR LA URL (se validan) ==================== */
   const q = new URLSearchParams(location.search);
   const peli = q.get('peli');
   const fechaP = /^(\d{4})-(\d{2})-(\d{2})$/.exec(q.get('fecha') || '');
@@ -25,7 +15,7 @@
   const dbox = q.get('butaca') === 'D-BOX';
   const asientos = (q.get('asientos') || '').split(',').filter(id => /^[A-N]\d{1,2}$/.test(id));
 
-  const candy = [];   // { id, n, precio, nombre }
+  const candy = [];
   (q.get('candy') || '').split(',').forEach(p => {
     const [id, n, precio, ...nombre] = p.split(':');
     if (/^[\w-]+$/.test(id) && /^\d{1,2}$/.test(n) && +n >= 1 && /^\d{1,7}$/.test(precio) && nombre.join(':').trim())
@@ -48,7 +38,6 @@
   const total = totalEntradas + totalCandy;
   const unidades = candy.reduce((s, c) => s + c.n, 0);
 
-  // Datos que viajan de una página a otra
   const base = new URLSearchParams();
   ['peli', 'fecha', 'hora', 'volver'].forEach(k => { if (q.get(k)) base.set(k, q.get(k)); });
   base.set('formato', fmt);
@@ -59,7 +48,7 @@
   $('#back').href = 'candy.html?' + base.toString();
 
 
-  /* ==================== 2. RESUMEN DE LA COMPRA ==================== */
+  /* ==================== RESUMEN DE LA COMPRA ==================== */
   document.title = 'Cinemax | Pago de ' + peli;
   $('#rPeli').textContent = peli;
   $('#rCuando').textContent = fechaTxt + ' · ' + hora;
@@ -85,7 +74,7 @@
   if (!dbox) $('#w-cDbox').hidden = true;
 
 
-  /* ==================== 3. MÉTODO DE PAGO ==================== */
+  /* ==================== MÉTODO DE PAGO ==================== */
   const NOTAS = {
     modo: 'Al confirmar, vas a completar el pago desde la app de tu banco con MODO.',
     cuenta: 'Al confirmar, vas a pagar con el dinero disponible en tu cuenta.'
@@ -102,23 +91,23 @@
   $$('input[name="metodo"]').forEach(r => r.addEventListener('change', () => { metodo = r.value; dibujarMetodo(); }));
 
 
-  /* ==================== 4. FORMATO DE LOS CAMPOS ==================== */
+  /* ==================== FORMATO DE LOS CAMPOS ==================== */
   const soloNum = (el, max) => el.addEventListener('input', () => { el.value = el.value.replace(/\D/g, '').slice(0, max); });
   soloNum($('#fDni'), 8);
   soloNum($('#fCvv'), 4);
 
-  $('#fCard').addEventListener('input', e => {                      // 1234 5678 9012 3456
+  $('#fCard').addEventListener('input', e => {                      
     const d = e.target.value.replace(/\D/g, '').slice(0, 19);
     e.target.value = d.replace(/(.{4})/g, '$1 ').trim();
   });
 
-  $('#fExp').addEventListener('input', e => {                       // MM/AA
+  $('#fExp').addEventListener('input', e => {                  
     const d = e.target.value.replace(/\D/g, '').slice(0, 4);
     e.target.value = d.length > 2 ? d.slice(0, 2) + '/' + d.slice(2) : d;
   });
 
 
-  /* ==================== 5. VALIDACIÓN ==================== */
+  /* ==================== VALIDACIÓN ==================== */
   const luhn = num => {
     let suma = 0, doble = false;
     for (let i = num.length - 1; i >= 0; i--) {
@@ -139,7 +128,7 @@
     fExp: v => {
       const m = /^(0[1-9]|1[0-2])\/(\d{2})$/.exec(v);
       if (!m) return 'Usa el formato MM/AA.';
-      const vence = new Date(2000 + +m[2], +m[1], 1);               // primer día del mes siguiente
+      const vence = new Date(2000 + +m[2], +m[1], 1);      
       return vence > new Date() ? '' : 'La tarjeta está vencida.';
     },
     fCvv: v => /^\d{3,4}$/.test(v) ? '' : 'Ingresa 3 o 4 dígitos.'
@@ -165,7 +154,7 @@
   Object.keys(CHECKS).forEach(id => $('#' + id).addEventListener('change', () => validar(id)));
 
 
-  /* ==================== 6. CONFIRMAR LA COMPRA ==================== */
+  /* ==================== CONFIRMAR LA COMPRA ==================== */
   $('#payForm').addEventListener('submit', e => {
     e.preventDefault();
     const ids = ['fNombre', 'fApellido', 'fEmail'];

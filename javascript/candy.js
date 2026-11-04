@@ -1,10 +1,4 @@
-/* ==========================================================================
-   CANDY.JS — PASO 3: ELEGIR EL CANDY
-   Recibe por la URL lo elegido antes (película, fecha, horario, formato, tipo
-   de butaca y butacas) y usa los precios de precios.js. Los productos están
-   en candy.html (data-id, data-name, data-price, data-old).
-   ?peli=...&fecha=2026-11-03&hora=18:15&formato=3D&butaca=D-BOX&asientos=G7,G9
-   ========================================================================== */
+/* ======================================CANDY============================================= */
 (function () {
   'use strict';
   const $ = s => document.querySelector(s);
@@ -12,10 +6,9 @@
   const dinero = n => '$' + n.toLocaleString('es-AR');
   const DIAS = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
   const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-  const MAXQ = 20;            // máximo por producto
-  const IMPUESTOS = 1.21;     // para mostrar el precio sin impuestos nacionales
+  const MAXQ = 20;           
+  const IMPUESTOS = 1.21;   
 
-  /* ---------- Datos que llegan por la URL (se validan) ---------- */
   const q = new URLSearchParams(location.search);
   const peli = q.get('peli');
   const fechaP = /^(\d{4})-(\d{2})-(\d{2})$/.exec(q.get('fecha') || '');
@@ -49,7 +42,6 @@
   $('#lTick').textContent = 'Entradas (' + asientos.length + ')';
   $('#pTick').textContent = dinero(totalEntradas);
 
-  // Datos que viajan de una página a otra
   const base = new URLSearchParams();
   ['peli', 'fecha', 'hora', 'volver'].forEach(k => { if (q.get(k)) base.set(k, q.get(k)); });
   base.set('formato', fmt);
@@ -59,7 +51,7 @@
 
 
   /* ---------- Productos ---------- */
-  const prod = new Map();   // id -> { name, price }
+  const prod = new Map();
   $$('.prod').forEach(el => {
     const price = +el.dataset.price, old = +el.dataset.old || 0;
     prod.set(el.dataset.id, { name: el.dataset.name, price });
@@ -70,12 +62,10 @@
       '<small>Precio sin impuestos nacionales: ' + dinero(Math.round(price / IMPUESTOS)) + '</small></div>' +
       '<button type="button" class="add" data-add="' + el.dataset.id + '" aria-label="Sumar ' + el.dataset.name + '">+<i class="n" hidden></i></button>';
 
-    // "Ver más" solo aparece si la descripción está cortada
     const ds = el.querySelector('.ds'), ver = el.querySelector('.ver');
     if (ds.scrollHeight > ds.clientHeight + 1) ver.hidden = false;
   });
 
-  // La URL puede traer lo que ya se había sumado (si se vuelve desde el pago)
   const cart = {};
   (q.get('candy') || '').split(',').forEach(p => {
     const [id, n] = p.split(':');
@@ -110,7 +100,6 @@
     });
 
     const go = $('#go'), datos = new URLSearchParams(base);
-    // id:cantidad:precio:nombre (el pago necesita el detalle para mostrarlo)
     if (ids.length) datos.set('candy', ids.map(id => id + ':' + cart[id] + ':' + prod.get(id).price + ':' + prod.get(id).name.replace(/[,:]/g, ' ')).join(','));
     go.textContent = ids.length ? 'Continuar al pago ›' : 'Continuar sin candy ›';
     go.href = 'pago.html?' + datos.toString();

@@ -1,9 +1,4 @@
-/* ==========================================================================
-   BUTACAS.JS — PASO 2: ELEGIR LAS BUTACAS
-   Recibe por la URL lo elegido antes (película, fecha, horario, formato y tipo
-   de butaca) y usa los precios de precios.js.
-   ?peli=...&fecha=2026-11-03&hora=18:15&volver=Spider-man.html&formato=3D&butaca=D-BOX
-   ========================================================================== */
+/* ============================BUTACAS=============================== */
 (function () {
   'use strict';
   const $ = s => document.querySelector(s);
@@ -11,7 +6,6 @@
   const DIAS = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
   const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 
-  /* ---------- Datos que llegan por la URL (se validan) ---------- */
   const q = new URLSearchParams(location.search);
   const peli = q.get('peli');
   const fechaP = /^(\d{4})-(\d{2})-(\d{2})$/.exec(q.get('fecha') || '');
@@ -39,7 +33,6 @@
     const s = document.createElement('span'); s.textContent = t; $('#fnChips').appendChild(s);
   });
 
-  // Datos que viajan de una página a otra
   const base = new URLSearchParams();
   ['peli', 'fecha', 'hora', 'volver'].forEach(k => { if (q.get(k)) base.set(k, q.get(k)); });
   base.set('formato', fmt);
@@ -48,15 +41,12 @@
 
 
   /* ---------- La sala ---------- */
-  // Filas A-F (cerca de la pantalla): 6 filas de 18 butacas, solo en el centro, porque la
-  // entrada a la sala está en los costados. Filas G-N: 8 filas de 24 (3 + 18 + 3).
-  // Total: 6 x 18 + 8 x 24 = 300 butacas.
   const FILAS = 'ABCDEFGHIJKLMN'.split('');
   const FRENTE = 6, CENTRO = 18, LADO = 3, MAX = 8;
   const esDbox = id => 'GH'.includes(id[0]);                    // filas G y H: D-BOX
   const cant = fila => FILAS.indexOf(fila) < FRENTE ? CENTRO : CENTRO + 2 * LADO;
 
-  // Butacas ocupadas: salen de la función (película + día + hora), así no cambian al recargar
+  // Butacas ocupadas
   function semilla(txt) { let h = 2166136261; for (const c of txt) h = Math.imul(h ^ c.charCodeAt(0), 16777619); return h >>> 0; }
   function azar(s) { return () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
   const r = azar(semilla(peli + '|' + q.get('fecha') + '|' + hora));
@@ -100,7 +90,6 @@
   /* ---------- La selección ---------- */
   const sel = new Set();
 
-  // Si se vuelve desde el candy, se recuperan las butacas elegidas
   (q.get('asientos') || '').split(',').forEach(id => {
     if (!/^[A-N]\d{1,2}$/.test(id)) return;
     const b = document.querySelector('.seat[data-id="' + id + '"]');
@@ -128,7 +117,6 @@
       b.setAttribute('aria-pressed', on);
     });
 
-    // "Continuar": solo funciona con al menos una butaca
     const go = $('#go');
     const datos = new URLSearchParams(base);
     datos.set('asientos', ids.join(','));

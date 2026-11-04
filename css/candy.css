@@ -1,13 +1,10 @@
-/* ==========================================================================
-   CANDY — se carga después de entradas.css (reutiliza pasos, encabezado,
-   columnas, resumen y botón). Acá solo lo propio de los productos.
-   ========================================================================== */
+/* ==================================CANDY============================================= */
 #ent.candy .st.ok { color: var(--muted); }
 #ent.candy .st.ok b { border-color: var(--red); color: var(--red2); }
 
 #ent.candy .cols { padding-top: 10px; }
 
-/* ---------- Categorías (barra que acompaña el scroll) ---------- */
+/* ---------- Categorías ---------- */
 #ent .chips {
   position: sticky;
   top: 64px;
@@ -47,7 +44,6 @@
   background: var(--panel);
 }
 
-/* Espacio de la imagen: queda en blanco hasta que se agregue el <img> */
 #ent .im {
   aspect-ratio: 1;
   border-radius: 6px;

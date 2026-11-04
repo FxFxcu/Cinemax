@@ -1,93 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/Cartelera/logo/1791932888094.png">
+    <link rel="icon" href="../img/Cartelera/logo/1791932888094.png">
     <title>Cinemax | Cartelera</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <!------------------------ BARRA DE NAVEGACIÓN. ------------------------>
-    <nav class="nav" aria-label="Navegación principal">
-        <a class="logo" href="#inicio">CINEMAX</a>
+    <div class="navbar-fixed">
+        <nav class="cx-nav" aria-label="Navegación principal">
+            <div class="nav-wrapper container">
+                <a href="../index.html" class="brand-logo">CINEMAX</a>
 
-        <div class="links">
-            <a href="#inicio">Inicio</a>
-            <a href="#cartelera">Cartelera</a>
-            <a href="#estrenos">Estrenos</a>
-            <a href="#preventas">Preventas</a>
-            <a href="#multimedia">Tráiler</a>
-            <a href="paginas/ayuda.html">Ayuda</a>
-        </div>
+                <a href="#" data-target="sidenav" class="sidenav-trigger hide-on-large-only" aria-label="Abrir menú">
+                    <i class="material-icons">menu</i>
+                </a>
 
-        <div class="auth">
-            <a class="btn2" href="#">Iniciar sesión</a>
-            <a class="btn" href="#">Crear cuenta</a>
-        </div>
-    </nav>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="cartelera.html">Cartelera</a></li>
+                    <li><a href="../index.html#estrenos">Estrenos</a></li>
+                    <li><a href="preventas.html">Preventas</a></li>
+                    <li><a href="ayuda.html">Ayuda</a></li>
+                    <li><a href="#" class="btn waves-effect cx-ghost">Iniciar sesión</a></li>
+                    <li><a href="#" class="btn waves-effect waves-light">Crear cuenta</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 
-    <!------------------------ TÍTULO ENTRE PRESENTACIÓN Y CARTELERA. ------------------------>
-    <div class="intro wrap">
-        <h1 class="intro-title"><span>CARTELERA</span></h1>
-        <p class="intro-sub">Funciones todos los dias</p>
-        <div class="intro-line"></div>
+    <!-- Menú lateral. -->
+    <ul class="sidenav" id="sidenav">
+        <li><div class="cx-side-brand">CINEMAX</div></li>
+        <li><a href="../index.html"><i class="material-icons">home</i>Inicio</a></li>
+        <li><a href="cartelera.html"><i class="material-icons">movie</i>Cartelera</a></li>
+        <li><a href="../index.html#estrenos"><i class="material-icons">new_releases</i>Estrenos</a></li>
+        <li><a href="preventas.html"><i class="material-icons">local_activity</i>Preventas</a></li>
+        <li><a href="ayuda.html"><i class="material-icons">help_outline</i>Ayuda</a></li>
+        <li><div class="divider"></div></li>
+        <li><a href="#"><i class="material-icons">account_circle</i>Iniciar sesión</a></li>
+        <li><a href="#"><i class="material-icons">person_add</i>Crear cuenta</a></li>
+    </ul>
+
+    <!------------------------ PRESENTACIÓN DE LA CARTELERA. ------------------------>
+    <div class="container center-align cx-intro">
+        <h1><span>CARTELERA</span></h1>
+        <p>Funciones todos los días</p>
+        <div class="cx-line"></div>
     </div>
 
     <!------------------------ CARTELERA. ------------------------>
-    <section id="cartelera">
-        <div class="wrap">
-            <h2>Cartelera</h2>
-    
-            <!-- Botones de filtro por género (los crea el JavaScript) -->
-            <div class="chips" id="gen" role="group" aria-label="Filtrar por género"></div>
-    
-            <!-- Tarjetas de las películas (las crea el JavaScript) -->
-            <div class="grid" id="cart" aria-live="polite"></div>
+    <section id="cartelera" class="cx-section">
+        <div class="container">
+            <!-- filtro por género. -->
+            <div class="cx-chips" id="gen" role="group" aria-label="Filtrar por género"></div>
+
+            <!-- Tarjetas de las películas. -->
+            <div class="row cx-row" id="cart" aria-live="polite"></div>
         </div>
     </section>
 
-    <script src="../javascript/main.js"></script>
     <!------------------------ FOOTER. ------------------------>
-    <footer>
-        <div class="wrap">
-
-            <div class="fg">
-                <div>
-                    <a class="logo" href="#inicio">CINEMAX</a>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l4 m6 s12">
+                    <a class="cx-logo" href="../index.html">CINEMAX</a>
                     <p>Tu sala de cine favorita, con la mejor imagen y sonido.</p>
                 </div>
 
-                <div>
-                    <h4>Explorar</h4>
-                    <p><a href="#cartelera">Cartelera</a></p>
-                    <p><a href="#estrenos">Estrenos</a></p>
-                    <p><a href="#preventas">Preventas</a></p>
+                <div class="col l2 m6 s6">
+                    <h6>Explorar</h6>
+                    <ul>
+                        <li><a href="cartelera.html">Cartelera</a></li>
+                        <li><a href="../index.html#estrenos">Estrenos</a></li>
+                        <li><a href="preventas.html">Preventas</a></li>
+                    </ul>
                 </div>
 
-                <div>
-                    <h4>Ayuda</h4>
-                    <p><a href="paginas/ayuda.html">Preguntas frecuentes</a></p>
+                <div class="col l2 m6 s6">
+                    <h6>Ayuda</h6>
+                    <ul>
+                        <li><a href="ayuda.html">Preguntas frecuentes</a></li>
+                    </ul>
                 </div>
 
-                <div>
-                    <h4>Horarios</h4>
+                <div class="col l2 m6 s6">
+                    <h6>Horarios</h6>
                     <p>Lun a jue: 14:00 a 23:30</p>
                     <p>Vie a dom: 12:00 a 01:00</p>
                 </div>
 
-                <div>
-                    <h4>Seguinos</h4>
+                <div class="col l2 m6 s6">
+                    <h6>Seguinos</h6>
                     <p>Instagram · Facebook · X</p>
                     <p>App para Android e iOS</p>
                 </div>
             </div>
+        </div>
 
-            <div class="copy">
+        <div class="footer-copyright">
+            <div class="container">
                 © 2026 Cinemax. Todos los derechos reservados. Clasificaciones: ATP · +13 · +16 · +18
             </div>
-
         </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="../javascript/main.js"></script>
 </body>
 </html>

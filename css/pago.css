@@ -1,7 +1,4 @@
-/* ==========================================================================
-   PAGO — se carga después de entradas.css (reutiliza pasos, encabezado,
-   columnas, resumen y botón). Acá solo lo propio del formulario.
-   ========================================================================== */
+/* =====================================PAGO======================================== */
 #ent.pago .st.ok { color: var(--muted); }
 #ent.pago .st.ok b { border-color: var(--red); color: var(--red2); }
 #ent.pago .cols { padding-top: 10px; }

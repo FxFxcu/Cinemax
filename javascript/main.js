@@ -1,17 +1,14 @@
 const $ = (s) => document.querySelector(s);
 
-// Si la página está dentro de paginas/ las rutas necesitan "../"; dentro de paginas/peliculas/, "../../"
 const BASE = location.pathname.includes('/paginas/peliculas/') ? '../../'
            : location.pathname.includes('/paginas/') ? '../' : '';
 
-// Colores de fondo de los afiches (se ven mientras carga la imagen). Los usan la cartelera y las preventas.
 const cols = ['#1c1c1c', '#261012', '#181818', '#2a1214', '#231315', '#2a0a0c'];
 
 
 /* ======================= PRESENTACIÓN (carrusel) ======================= */
 if ($('#sVid')) {
 
-  // Película de cada diapositiva. v = ruta del video (sin audio)
   const S = [
     { tag: 'En preventa', t: 'Avengers Doomsday', i: 'Ciencia Ficción · 2 h 50 min · +16',
       p: 'Necesitamos un milagro..',
@@ -24,21 +21,18 @@ if ($('#sVid')) {
       c: '#231315', v: 'audio-video/lv_0_20261002212449.mp4' }
   ];
 
-  const DURACION = 10500;   // tiempo por película en milisegundos
+  const DURACION = 10500;
   const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const V = $('#sVid');
   let idx = 0, timer, swap;
 
-  // Puntos del carrusel
   $('#dots').innerHTML = S.map((_, i) =>
     `<button aria-label="Ir a la película ${i + 1}" data-i="${i}"></button>`).join('');
 
-  // El video nunca se queda pausado
   V.addEventListener('playing', () => V.classList.add('on'));
   V.addEventListener('error', () => V.classList.remove('on'));
   V.addEventListener('pause', () => { if (!V.ended && !RM) V.play().catch(() => {}); });
 
-  // Carga la información y el video de la película actual
   function fill() {
     const s = S[idx];
     $('#sTag').textContent = s.tag;
@@ -54,7 +48,6 @@ if ($('#sVid')) {
     V.src = BASE + s.v;
     if (!RM) { const p = V.play(); if (p) p.catch(() => {}); }
 
-    // Reinicia la barra de tiempo
     const bar = $('#sBar');
     bar.classList.remove('run');
     void bar.offsetWidth;
@@ -66,7 +59,7 @@ if ($('#sVid')) {
 
   // Cambia de película con una transición de aparición y desaparición
   function show(i, first) {
-    idx = (i + S.length) % S.length;   // después de la última vuelve a la primera
+    idx = (i + S.length) % S.length;
     const sl = document.querySelector('.slide');
     clearTimeout(swap);
     if (first || RM) { fill(); return; }
@@ -74,7 +67,6 @@ if ($('#sVid')) {
     swap = setTimeout(() => { fill(); sl.classList.remove('out'); }, 400);
   }
 
-  // Avance automático
   function auto() {
     clearInterval(timer);
     if (!RM) timer = setInterval(() => show(idx + 1), DURACION);
@@ -92,10 +84,7 @@ if ($('#sVid')) {
 }
 
 
-/* ======================= LISTA DE PELÍCULAS EN CARTELERA =======================
-   La usan la cartelera (tarjetas) y el carrusel "Más en cartelera" de cada película.
-   url = ruta desde la raíz del proyecto (cada página le antepone su BASE).
-   Aquí van solo los datos de la tarjeta; la información completa vive en el HTML de cada película. */
+/* ======================= LISTA DE PELÍCULAS EN CARTELERA =======================*/
 const CART = [
   { t: 'El gato con sombrero', g: 'Animación', r: 'ATP', d: '1 h 31 min', h: ['16:30', '19:00', '21:45'], img: 'img/Cartelera/El_gato_con_sombrero.webp', url: 'paginas/peliculas/gato-sombrero.html' },
   { t: 'Spider-man: un nuevo día', g: 'Acción', r: '+13', d: '2 h 30 min', h: ['15:00', '18:15', '21:00'], img: 'img/Cartelera/spider-man.avif', url: 'paginas/peliculas/Spider-man.html' },
@@ -144,7 +133,6 @@ if ($('#cart')) {
       `<button type="button" class="chip${g === gen ? ' active' : ''}" data-g="${g}" aria-pressed="${g === gen}">${g}</button>`).join('');
   }
 
-  // Al hacer clic en un género, filtra las películas
   $('#gen').addEventListener('click', (e) => {
     const b = e.target.closest('button');
     if (!b) return;
@@ -153,17 +141,14 @@ if ($('#cart')) {
     drawCart();
   });
 
-  // Evento para hacer clic en la tarjeta y abrir su página correspondiente
   $('#cart').addEventListener('click', (e) => {
     const card = e.target.closest('.movie-card');
     if (!card) return;
 
-    // Si hacen clic en un horario, evitamos que abra la página (opcional)
     if (e.target.closest('.cx-time')) return;
 
     const movieUrl = card.dataset.url;
     
-    // Redirige a la página específica de esa película usando el BASE correcto
     window.location.href = BASE + movieUrl;
   });
 
@@ -175,8 +160,6 @@ if ($('#cart')) {
 /* ======================= PREVENTAS ======================= */
 if ($('#pre')) {
 
-  // t = título, g = género, d = duración, f = fecha de estreno,
-  // h = primera función, img = afiche (opcional)
   const PRE = [
     { t: 'Avengers Doomsday', g: 'Ciencia Ficción', d: '2 h 50 min', f: '16 dic', h: '18:00',
       img: 'img/Cartelera/preventa/avengers-doomsday.webp',
@@ -186,7 +169,6 @@ if ($('#pre')) {
       url: 'paginas/peliculas/Duna-PT.html' }
   ];
 
-  // Dibuja las tarjetas de preventa (Materialize: card horizontal)
   function drawPre() {
     $('#pre').innerHTML = PRE.map((m, i) => `
       <div class="col s12 l6">
@@ -214,10 +196,6 @@ if ($('#pre')) {
   drawPre();
 }
 
-
-/* ======================= MATERIALIZE ======================= */
-// Menú lateral (sidenav): el nav se convierte en sidebar en celular y tablet
 if (window.M) {
   M.Sidenav.init(document.querySelectorAll('.sidenav'));
 }
-

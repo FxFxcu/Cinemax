@@ -1,12 +1,7 @@
-/* ==========================================================================
-   1. CONSTANTES Y DATOS INICIALES
-   ========================================================================== */
 const $ = s => document.querySelector(s);
 const DIAS = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
 const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 
-// Datos de la función: llegan por la URL desde la página de cada película.
-// Ej: entradas.html?peli=Spider-man&fecha=2026-11-03&hora=18:15&volver=Spider-man.html
 const params = new URLSearchParams(location.search);
 const peli = params.get('peli');
 const fechaP = /^(\d{4})-(\d{2})-(\d{2})$/.exec(params.get('fecha') || '');
@@ -27,15 +22,10 @@ const BUTACAS = [
   { id: 'D-BOX', nombre: 'Butaca D-BOX', ds: 'Butaca con movimiento sincronizado con la película. Filas G y H.', x: EXTRA_DBOX }
 ];
 
-// Si se vuelve desde las butacas, se recuerda lo que se había elegido
 const fmtP = params.get('formato'), seatP = params.get('butaca');
 let fmt = FORMATOS.some(o => o.id === fmtP) ? fmtP : '2D';
 let seat = BUTACAS.some(o => o.id === seatP) ? seatP : 'Simple';
 
-
-/* ==========================================================================
-   2. FUNCIONES DE RENDERIZADO Y UTILIDADES
-   ========================================================================== */
 const $$ = n => '$' + n.toLocaleString('es-AR');
 
 function rows(el, name, list, cur) {
@@ -87,10 +77,6 @@ function datosFuncion() {
   $('#back').href = volverP ? '../peliculas/' + volverP : '../cartelera.html';
 }
 
-
-/* ==========================================================================
-   3. MANEJADORES DE EVENTOS E INICIALIZACIÓN
-   ========================================================================== */
 document.addEventListener('change', e => {
   if (e.target.name === 'fmt') fmt = e.target.value;
   if (e.target.name === 'seat') seat = e.target.value;

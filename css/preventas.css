@@ -1,0 +1,25 @@
+/* =============================PREVENTAS======================================== */
+.preventas .cx-pre .card-image {
+  flex: 0 0 calc(50% - 13px);
+  width: calc(50% - 13px);
+  max-width: none;
+  align-self: flex-start;
+  aspect-ratio: 2 / 3;
+}
+
+.preventas .cx-pre .card-content { padding: 20px; }
+.preventas .cx-pre .card-content .card-title { margin: 6px 0 10px; font-size: 22px; line-height: 1.2; }
+.preventas .cx-pre .card-content p { margin-bottom: 6px; font-size: 14px; }
+.preventas .cx-pre .card-action { padding: 0 20px 20px; }
+
+@media only screen and (max-width: 992px) {
+  .preventas .cx-pre .card-image { flex-basis: calc(33.3333% - 17.3333px); width: calc(33.3333% - 17.3333px); }
+}
+
+@media only screen and (max-width: 600px) {
+  .preventas .cx-pre .card-image { flex-basis: calc(50% - 13px); width: calc(50% - 13px); }
+  .preventas .cx-pre .card-content { padding: 14px; }
+  .preventas .cx-pre .card-content .card-title { font-size: 18px; }
+  .preventas .cx-pre .card-action { padding: 0 14px 14px; }
+  .preventas .cx-pre .btn { padding: 0 12px; }
+}

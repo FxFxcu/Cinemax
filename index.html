@@ -16,17 +16,15 @@
             <div class="nav-wrapper container">
                 <a href="index.html" class="brand-logo">CINEMAX</a>
 
-                <!-- Botón que abre el menú lateral en celular y tablet -->
                 <a href="#" data-target="sidenav" class="sidenav-trigger hide-on-large-only" aria-label="Abrir menú">
                     <i class="material-icons">menu</i>
                 </a>
 
-                <!-- Menú en computadora -->
                 <ul class="right hide-on-med-and-down">
                     <li><a href="index.html">Inicio</a></li>
                     <li><a href="paginas/cartelera.html">Cartelera</a></li>
                     <li><a href="#estrenos">Estrenos</a></li>
-                    <li><a href="#preventas">Preventas</a></li>
+                    <li><a href="paginas/preventas.html">Preventas</a></li>
                     <li><a href="paginas/ayuda.html">Ayuda</a></li>
                     <li><a href="#" class="btn waves-effect cx-ghost">Iniciar sesión</a></li>
                     <li><a href="#" class="btn waves-effect waves-light">Crear cuenta</a></li>
@@ -41,7 +39,7 @@
         <li><a href="index.html"><i class="material-icons">home</i>Inicio</a></li>
         <li><a href="paginas/cartelera.html"><i class="material-icons">movie</i>Cartelera</a></li>
         <li><a href="#estrenos"><i class="material-icons">new_releases</i>Estrenos</a></li>
-        <li><a href="#preventas"><i class="material-icons">local_activity</i>Preventas</a></li>
+        <li><a href="paginas/preventas.html"><i class="material-icons">local_activity</i>Preventas</a></li>
         <li><a href="paginas/ayuda.html"><i class="material-icons">help_outline</i>Ayuda</a></li>
         <li><div class="divider"></div></li>
         <li><a href="#"><i class="material-icons">account_circle</i>Iniciar sesión</a></li>
@@ -51,7 +49,6 @@
     <!------------------------ PRESENTACIÓN. ------------------------>
     <header class="hero" id="inicio">
 
-        <!-- Video de fondo + degradados + barra de tiempo -->
         <div class="art" id="sArt" role="img" aria-label="Video de la película destacada">
             <span id="sName" hidden></span>
             <video id="sVid" muted playsinline loop preload="auto"
@@ -95,25 +92,25 @@
         <div class="cx-line"></div>
     </div>
 
-    <!------------------------ CARTELERA (Materialize: grid + cards + chips). ------------------------>
+    <!------------------------ CARTELERA. ------------------------>
     <section id="cartelera" class="cx-section">
         <div class="container">
             <h2 class="cx-title">Cartelera</h2>
 
-            <!-- Chips de filtro por género (los crea el JavaScript) -->
+            <!-- filtro por género -->
             <div class="cx-chips" id="gen" role="group" aria-label="Filtrar por género"></div>
 
-            <!-- Tarjetas de las películas (las crea el JavaScript) -->
+            <!-- Tarjetas de las películas -->
             <div class="row cx-row" id="cart" aria-live="polite"></div>
         </div>
     </section>
 
-    <!------------------------ PREVENTAS (Materialize: cards horizontales). ------------------------>
+    <!------------------------ PREVENTAS. ------------------------>
     <section id="preventas" class="cx-section">
         <div class="container">
             <h2 class="cx-title">Preventas</h2>
 
-            <!-- Tarjetas de preventa (las crea el JavaScript) -->
+            <!-- Tarjetas de preventa -->
             <div class="row cx-row" id="pre"></div>
         </div>
     </section>
@@ -132,7 +129,7 @@
                     <ul>
                         <li><a href="paginas/cartelera.html">Cartelera</a></li>
                         <li><a href="#estrenos">Estrenos</a></li>
-                        <li><a href="#preventas">Preventas</a></li>
+                        <li><a href="paginas/preventas.html">Preventas</a></li>
                     </ul>
                 </div>
 
@@ -164,7 +161,6 @@
         </div>
     </footer>
 
-    <!-- Materialize: JavaScript (antes de tu JavaScript) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="javascript/main.js"></script>
 </body>

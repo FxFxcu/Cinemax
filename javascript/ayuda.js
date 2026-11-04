@@ -1,9 +1,6 @@
 /* ======================= AYUDA (PREGUNTAS FRECUENTES) ======================= */
-
-// Preguntas y respuestas. Para agregar otra, copia una línea y cambia el texto.
 const $ = (s) => document.querySelector(s);
-// Preguntas y respuestas. Reemplaza la lista FAQ de tu ayuda.js por esta.
-// Para agregar otra, copia una línea y cambia el texto.
+
 const FAQ = [
   { q: '¿Cómo compro entradas?',
     a: 'Elige la película en la cartelera, selecciona el horario y confirma la compra.' },

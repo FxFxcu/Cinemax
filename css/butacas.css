@@ -1,7 +1,4 @@
-/* ==========================================================================
-   BUTACAS — se carga después de entradas.css (reutiliza pasos, encabezado,
-   columnas, resumen y botón). Acá solo lo propio de la sala.
-   ========================================================================== */
+/* ==================================BUTACAS =========================================== */
 #ent.but .st.ok { color: var(--muted); }
 #ent.but .st.ok b { border-color: var(--red); color: var(--red2); }
 
@@ -9,7 +6,7 @@
 
 /* ---------- Sala ---------- */
 #ent .hall {
-  --s: clamp(13px, 1.7vw, 19px);   /* tamaño de cada butaca */
+  --s: clamp(13px, 1.7vw, 19px);
   --g: 3px;
   padding: 28px 24px 22px;
   border: 1px solid var(--line);
@@ -76,7 +73,7 @@
   text-align: center;
 }
 
-/* ---------- Butaca (también se usa en la leyenda) ---------- */
+/* ---------- Butaca ---------- */
 #ent .seat {
   display: inline-block;
   width: var(--s);
@@ -112,7 +109,7 @@
 
 #ent .lim { min-height: 20px; margin: 10px 0 0; color: var(--red2); font-size: 13px; text-align: center; }
 
-/* ---------- Lista de butacas elegidas (resumen) ---------- */
+/* ---------- Lista de butacas elegidas ---------- */
 #ent .slist { margin: 14px 0 0; padding: 0; list-style: none; max-height: 260px; overflow-y: auto; }
 
 #ent .slist li {
