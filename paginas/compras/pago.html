@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Cinemax | Pago</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="../../css/entradas.css">
+    <link rel="stylesheet" href="../../css/pago.css">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <!------------------------ BARRA DE NAVEGACIÓN (Materialize: navbar + sidenav). ------------------------>
+    <div class="navbar-fixed">
+        <nav class="cx-nav" aria-label="Navegación principal">
+            <div class="nav-wrapper container">
+                <a href="../../index.html" class="brand-logo">CINEMAX</a>
+
+                <!-- Botón que abre el menú lateral en celular y tablet -->
+                <a href="#" data-target="sidenav" class="sidenav-trigger hide-on-large-only" aria-label="Abrir menú">
+                    <i class="material-icons">menu</i>
+                </a>
+
+                <!-- Menú en computadora -->
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="../../index.html">Inicio</a></li>
+                    <li><a href="../cartelera.html">Cartelera</a></li>
+                    <li><a href="../../index.html#estrenos">Estrenos</a></li>
+                    <li><a href="../../index.html#preventas">Preventas</a></li>
+                    <li><a href="../ayuda.html">Ayuda</a></li>
+                    <li><a href="#" class="btn waves-effect cx-ghost">Iniciar sesión</a></li>
+                    <li><a href="#" class="btn waves-effect waves-light">Crear cuenta</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Menú lateral (el nav se convierte en sidebar en celular) -->
+    <ul class="sidenav" id="sidenav">
+        <li><div class="cx-side-brand">CINEMAX</div></li>
+        <li><a href="../../index.html"><i class="material-icons">home</i>Inicio</a></li>
+        <li><a href="../cartelera.html"><i class="material-icons">movie</i>Cartelera</a></li>
+        <li><a href="../../index.html#estrenos"><i class="material-icons">new_releases</i>Estrenos</a></li>
+        <li><a href="../../index.html#preventas"><i class="material-icons">local_activity</i>Preventas</a></li>
+        <li><a href="../ayuda.html"><i class="material-icons">help_outline</i>Ayuda</a></li>
+        <li><div class="divider"></div></li>
+        <li><a href="#"><i class="material-icons">account_circle</i>Iniciar sesión</a></li>
+        <li><a href="#"><i class="material-icons">person_add</i>Crear cuenta</a></li>
+    </ul>
+
+    <!------------------------ PAGO: paso 4 de la compra. ------------------------>
+    <!-- Simulación: no se procesa ningún cobro y los datos de la tarjeta no se guardan ni se envían. -->
+    <main id="ent" class="wrap pago">
+        <div class="steps" id="steps" aria-label="Pasos de la compra">
+            <div class="st ok"><b>✓</b>Función</div><span class="sep"></span>
+            <div class="st ok"><b>✓</b>Butacas</div><span class="sep"></span>
+            <div class="st ok"><b>✓</b>Candy</div><span class="sep"></span>
+            <div class="st on"><b>4</b>Pago</div>
+        </div>
+
+        <div id="pBody">
+            <div class="head">
+                <a class="back" id="back" href="candy.html">‹ Volver al candy</a>
+                <p class="eyebrow">Paso 4 · Pago</p>
+                <h1>Pago</h1>
+                <p class="fn" id="fnChips"></p>
+            </div>
+
+            <div class="cols">
+                <form class="pform" id="payForm" novalidate>
+
+                    <section>
+                        <h2>Seleccionar método de pago</h2>
+                        <div class="mps" role="radiogroup" aria-label="Método de pago">
+                            <label class="mp on"><input type="radio" name="metodo" value="tarjeta" checked><b>Tarjeta</b><small>Crédito o débito</small></label>
+                            <label class="mp"><input type="radio" name="metodo" value="modo"><b>MODO</b><small>Desde la app de tu banco</small></label>
+                            <label class="mp"><input type="radio" name="metodo" value="cuenta"><b>Dinero en cuenta</b><small>Con tu saldo disponible</small></label>
+                        </div>
+                        <p class="nota" id="nota" hidden></p>
+                    </section>
+
+                    <section>
+                        <h2>Información</h2>
+                        <div class="row2">
+                            <div class="fw"><div class="fld"><label for="fNombre">Nombre</label><input id="fNombre" type="text" autocomplete="given-name"></div><p class="err" id="e-fNombre" hidden></p></div>
+                            <div class="fw"><div class="fld"><label for="fApellido">Apellido</label><input id="fApellido" type="text" autocomplete="family-name"></div><p class="err" id="e-fApellido" hidden></p></div>
+                        </div>
+                        <div class="fw"><div class="fld"><label for="fEmail">Email</label><input id="fEmail" type="email" autocomplete="email" inputmode="email"></div><p class="err" id="e-fEmail" hidden></p></div>
+                    </section>
+
+                    <section id="cardBox">
+                        <h2>Información de pago</h2>
+                        <div class="fw"><div class="fld"><label for="fCard">N° de tarjeta crédito o débito</label><input id="fCard" type="text" autocomplete="cc-number" inputmode="numeric" placeholder="0000 0000 0000 0000"></div><p class="err" id="e-fCard" hidden></p></div>
+                        <div class="row2">
+                            <div class="fw"><div class="fld"><label for="fTitular">Nombre completo del titular de la tarjeta</label><input id="fTitular" type="text" autocomplete="cc-name"></div><p class="err" id="e-fTitular" hidden></p></div>
+                            <div class="fw"><div class="fld"><label for="fDni">DNI del titular de la tarjeta</label><input id="fDni" type="text" inputmode="numeric"></div><p class="err" id="e-fDni" hidden></p></div>
+                        </div>
+                        <div class="row2">
+                            <div class="fw"><div class="fld"><label for="fExp">Fecha de vencimiento (MM/AA)</label><input id="fExp" type="text" autocomplete="cc-exp" inputmode="numeric" placeholder="MM/AA"></div><p class="err" id="e-fExp" hidden></p></div>
+                            <div class="fw"><div class="fld"><label for="fCvv">Código de seguridad</label><input id="fCvv" type="text" autocomplete="cc-csc" inputmode="numeric" placeholder="123"></div><p class="err" id="e-fCvv" hidden></p></div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Términos y condiciones</h2>
+                        <div class="fw" id="w-cDbox"><label class="chk"><input type="checkbox" id="cDbox"><div>Declaro haber leído y aceptado las advertencias en cuanto al formato D-BOX (butacas con movimiento). <a href="#">Más información</a></div></label><p class="err" id="e-cDbox" hidden></p></div>
+                        <div class="fw"><label class="chk"><input type="checkbox" id="cMenores"><div>Declaro que los menores de edad ingresan a las películas +13 y +16 acompañados por sus padres o tutores, y que se me podrá solicitar el DNI en formato físico o digital (Mi Argentina). <a href="#">Nota de autorización de acceso de menores</a></div></label><p class="err" id="e-cMenores" hidden></p></div>
+                        <div class="fw"><label class="chk"><input type="checkbox" id="cTyc"><div>He leído y aceptado los Términos y Condiciones. <a href="#">Términos y Condiciones</a></div></label><p class="err" id="e-cTyc" hidden></p></div>
+                        <div class="fw"><label class="chk"><input type="checkbox" id="cPromo"><div>Deseo ser contactado para recibir información de estrenos y promociones.</div></label></div>
+                    </section>
+                </form>
+
+                <aside class="res" aria-label="Resumen de tu compra">
+                    <p class="eyebrow">Tu compra</p>
+                    <dl>
+                        <div><dt>Película</dt><dd id="rPeli"></dd></div>
+                        <div><dt>Función</dt><dd id="rCuando"></dd></div>
+                        <div><dt>Butacas</dt><dd id="rSeats"></dd></div>
+                    </dl>
+                    <ul class="slist" id="list"></ul>
+                    <div class="calc">
+                        <p><span id="lTick"></span><b id="pTick"></b></p>
+                        <p><span id="lCandy"></span><b id="pCandy"></b></p>
+                    </div>
+                    <div class="total">
+                        <span>Total</span>
+                        <strong id="total"></strong>
+                    </div>
+                    <button class="go" type="submit" form="payForm" id="pay">Pagar</button>
+                    <p class="note">Simulación: no se realiza ningún cobro y no se guardan datos de la tarjeta.</p>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <a class="logo" href="../../index.html">CINEMAX</a>
+            <p style="margin:8px 0 0">Tu sala de cine favorita, con la mejor imagen y sonido.</p>
+            <div class="copy">© 2026 Cinemax. Todos los derechos reservados. Clasificaciones: ATP · +13 · +16 · +18</div>
+        </div>
+    </footer>
+
+    <script src="../../javascript/precios.js"></script>
+    <script src="../../javascript/pago.js"></script>
+</body>
+</html>

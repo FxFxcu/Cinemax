@@ -217,8 +217,18 @@
       return;
     }
 
-    // Ir a elegir butacas
-    if (e.target.closest('#mvGo')) toast('Abriendo la elección de butacas…');
+    // Ir a la página de entradas (la misma para todas las películas).
+    // Se le pasan por la URL: película, fecha y horario elegidos.
+    if (e.target.closest('#mvGo')) {
+      const iso = (d) => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      const datos = new URLSearchParams({
+        peli: m.t,
+        fecha: iso(addD(sel)),
+        hora: selT,
+        volver: location.pathname.split('/').pop()   // para el botón "Volver a la película"
+      });
+      location.href = '../compras/entradas.html?' + datos.toString();
+    }
   });
 
 

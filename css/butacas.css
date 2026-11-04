@@ -1,0 +1,153 @@
+/* ==========================================================================
+   BUTACAS — se carga después de entradas.css (reutiliza pasos, encabezado,
+   columnas, resumen y botón). Acá solo lo propio de la sala.
+   ========================================================================== */
+#ent.but .st.ok { color: var(--muted); }
+#ent.but .st.ok b { border-color: var(--red); color: var(--red2); }
+
+#ent.but .cols { padding-top: 28px; }
+
+/* ---------- Sala ---------- */
+#ent .hall {
+  --s: clamp(13px, 1.7vw, 19px);   /* tamaño de cada butaca */
+  --g: 3px;
+  padding: 28px 24px 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+#ent .screen {
+  height: 5px;
+  margin: 0 8%;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  background: linear-gradient(90deg, transparent, #cfcfcf 20%, #fff 50%, #cfcfcf 80%, transparent);
+  box-shadow: 0 8px 28px rgba(255, 255, 255, .12);
+}
+
+#ent .slabel {
+  margin: 10px 0 2px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: .3em;
+  text-align: center;
+}
+
+#ent .cap {
+  margin: 0 0 10px;
+  color: #7a7a7a;
+  font-size: 12.5px;
+  text-align: center;
+}
+
+#ent .aviso {
+  margin: 0 0 18px;
+  padding: 10px 14px;
+  border-left: 3px solid var(--red);
+  background: #170c0d;
+  color: #d8d8d8;
+  font-size: 13.5px;
+}
+
+#ent .mapbox { overflow-x: auto; padding-bottom: 6px; }
+#ent .map { width: max-content; margin: 0 auto; }
+
+#ent .sr { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: var(--g); }
+#ent .rl { width: 16px; color: var(--muted); font-size: 11px; text-align: center; }
+#ent .seats { display: flex; gap: var(--g); }
+#ent .sgap { width: calc(var(--s) * .9); }
+
+#ent .ent {
+  width: calc(var(--s) * 3 + var(--g) * 2);
+  height: var(--s);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5c5c5c;
+  font-size: 9px;
+  letter-spacing: .12em;
+}
+
+#ent .zona {
+  margin: 14px 0 8px;
+  color: var(--gold);
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-align: center;
+}
+
+/* ---------- Butaca (también se usa en la leyenda) ---------- */
+#ent .seat {
+  display: inline-block;
+  width: var(--s);
+  height: var(--s);
+  padding: 0;
+  border: 1px solid #4a4a4a;
+  border-radius: 5px 5px 3px 3px;
+  background: #2a2a2a;
+  vertical-align: middle;
+}
+
+#ent button.seat:hover:not(:disabled) { border-color: #fff; background: #3a3a3a; }
+#ent .seat.pr { border-color: var(--gold); background: #2a2310; }
+#ent button.seat.pr:hover:not(:disabled) { background: #3d3216; }
+#ent .seat.sel, #ent button.seat.sel:hover { border-color: var(--red); background: var(--red); }
+#ent .seat.occ { border-color: #1f1f1f; background: #161616; cursor: not-allowed; }
+#ent .seat.blk { border: 1px dashed #2f2f2f; background: transparent; cursor: not-allowed; opacity: .55; }
+
+#ent .legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 22px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+#ent .legend span { display: inline-flex; align-items: center; gap: 8px; }
+#ent .legend .seat { width: 14px; height: 14px; }
+
+#ent .lim { min-height: 20px; margin: 10px 0 0; color: var(--red2); font-size: 13px; text-align: center; }
+
+/* ---------- Lista de butacas elegidas (resumen) ---------- */
+#ent .slist { margin: 14px 0 0; padding: 0; list-style: none; max-height: 260px; overflow-y: auto; }
+
+#ent .slist li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+
+#ent .slist li b { font-weight: 600; }
+#ent .slist small { margin-left: 6px; color: var(--muted); font-size: 12px; }
+#ent .slist .pr { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+#ent .slist .vacia { display: block; padding: 14px 0; border: 0; color: var(--muted); }
+
+#ent .slist .x {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1;
+}
+
+#ent .slist .x:hover { border-color: var(--red2); color: #fff; }
+
+#ent .total { margin-top: 14px; }
+
+#ent .go[aria-disabled="true"] { opacity: .4; pointer-events: none; }
+
+@media (max-width: 900px) {
+  #ent .hall { padding: 22px 14px 18px; }
+}

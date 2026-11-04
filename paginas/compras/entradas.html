@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Cinemax | Elige el tipo de función</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="../../css/entradas.css">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <!------------------------ BARRA DE NAVEGACIÓN (Materialize: navbar + sidenav). ------------------------>
+    <div class="navbar-fixed">
+        <nav class="cx-nav" aria-label="Navegación principal">
+            <div class="nav-wrapper container">
+                <a href="../../index.html" class="brand-logo">CINEMAX</a>
+
+                <!-- Botón que abre el menú lateral en celular y tablet -->
+                <a href="#" data-target="sidenav" class="sidenav-trigger hide-on-large-only" aria-label="Abrir menú">
+                    <i class="material-icons">menu</i>
+                </a>
+
+                <!-- Menú en computadora -->
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="../../index.html">Inicio</a></li>
+                    <li><a href="../cartelera.html">Cartelera</a></li>
+                    <li><a href="../../index.html#estrenos">Estrenos</a></li>
+                    <li><a href="../../index.html#preventas">Preventas</a></li>
+                    <li><a href="../ayuda.html">Ayuda</a></li>
+                    <li><a href="#" class="btn waves-effect cx-ghost">Iniciar sesión</a></li>
+                    <li><a href="#" class="btn waves-effect waves-light">Crear cuenta</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Menú lateral (el nav se convierte en sidebar en celular) -->
+    <ul class="sidenav" id="sidenav">
+        <li><div class="cx-side-brand">CINEMAX</div></li>
+        <li><a href="../../index.html"><i class="material-icons">home</i>Inicio</a></li>
+        <li><a href="../cartelera.html"><i class="material-icons">movie</i>Cartelera</a></li>
+        <li><a href="../../index.html#estrenos"><i class="material-icons">new_releases</i>Estrenos</a></li>
+        <li><a href="../../index.html#preventas"><i class="material-icons">local_activity</i>Preventas</a></li>
+        <li><a href="../ayuda.html"><i class="material-icons">help_outline</i>Ayuda</a></li>
+        <li><div class="divider"></div></li>
+        <li><a href="#"><i class="material-icons">account_circle</i>Iniciar sesión</a></li>
+        <li><a href="#"><i class="material-icons">person_add</i>Crear cuenta</a></li>
+    </ul>
+
+    <!------------------------ ENTRADAS: paso 1 de la compra (formato y butaca). ------------------------>
+    <main id="ent" class="wrap">
+        <div class="steps" aria-label="Pasos de la compra">
+            <div class="st on"><b>1</b>Función</div><span class="sep"></span>
+            <div class="st"><b>2</b>Butacas</div><span class="sep"></span>
+            <div class="st"><b>3</b>Candy</div><span class="sep"></span>
+            <div class="st"><b>4</b>Pago</div>
+        </div>
+
+        <div class="head">
+            <a class="back" id="back" href="../cartelera.html">‹ Volver a la película</a>
+            <p class="eyebrow">Paso 1 · Entradas desde <span id="desde"></span></p>
+            <h1>Elige el tipo de función</h1>
+            <p class="fn">
+                <span id="fPeli"></span>
+                <span id="fFecha"></span>
+                <span id="fHora"></span>
+            </p>
+        </div>
+
+        <div class="cols">
+            <div class="choose">
+                <section>
+                    <h2>Formato</h2>
+                    <div class="list" id="fmt" role="radiogroup" aria-label="Formato de la función"></div>
+                </section>
+
+                <section>
+                    <h2>Tipo de butaca</h2>
+                    <div class="list" id="seat" role="radiogroup" aria-label="Tipo de butaca"></div>
+                </section>
+            </div>
+
+            <aside class="res" aria-label="Resumen de tu compra">
+                <p class="eyebrow">Resumen</p>
+                <dl>
+                    <div><dt>Película</dt><dd id="rPeli"></dd></div>
+                    <div><dt>Función</dt><dd id="rCuando"></dd></div>
+                </dl>
+                <div class="calc">
+                    <p><span id="lFmt"></span><b id="pFmt"></b></p>
+                    <p><span id="lSeat"></span><b id="pSeat"></b></p>
+                </div>
+                <div class="total">
+                    <span>Total por entrada</span>
+                    <strong id="price"></strong>
+                </div>
+                <button class="go" type="button" id="go">Continuar a las butacas ›</button>
+                <p class="note">Después podrás sumar candy y elegir la forma de pago.</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <a class="logo" href="../../index.html">CINEMAX</a>
+            <p style="margin:8px 0 0">Tu sala de cine favorita, con la mejor imagen y sonido.</p>
+            <div class="copy">© 2026 Cinemax. Todos los derechos reservados. Clasificaciones: ATP · +13 · +16 · +18</div>
+        </div>
+    </footer>
+
+    <script src="../../javascript/precios.js"></script>
+    <script src="../../javascript/entradas.js"></script>
+</body>
+</html>

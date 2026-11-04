@@ -1,0 +1,166 @@
+/* ==========================================================================
+   CANDY — se carga después de entradas.css (reutiliza pasos, encabezado,
+   columnas, resumen y botón). Acá solo lo propio de los productos.
+   ========================================================================== */
+#ent.candy .st.ok { color: var(--muted); }
+#ent.candy .st.ok b { border-color: var(--red); color: var(--red2); }
+
+#ent.candy .cols { padding-top: 10px; }
+
+/* ---------- Categorías (barra que acompaña el scroll) ---------- */
+#ent .chips {
+  position: sticky;
+  top: 64px;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 14px 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+#ent .chips a {
+  padding: 6px 16px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+#ent .chips a:hover { border-color: var(--red2); color: #fff; }
+#ent .menu section { scroll-margin-top: 130px; }
+
+/* ---------- Productos ---------- */
+#ent .pgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 16px;
+}
+
+#ent .prod {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+/* Espacio de la imagen: queda en blanco hasta que se agregue el <img> */
+#ent .im {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  background: #f4f4f4;
+  overflow: hidden;
+}
+
+#ent .im img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+#ent .prod h3 { margin: 14px 0 6px; font-size: 16px; font-weight: 600; line-height: 1.25; }
+
+#ent .ds {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+#ent .ds.open { display: block; }
+
+#ent .ver {
+  align-self: flex-start;
+  margin: 0 0 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #d8d8d8;
+  font-size: 13px;
+  text-decoration: underline;
+}
+
+#ent .ver[hidden] { display: none; }
+
+#ent .pb {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+#ent .pv { display: flex; flex-direction: column; min-width: 0; }
+#ent .pv s { color: var(--muted); font-size: 13px; }
+#ent .pv b { font-size: 17px; font-weight: 600; line-height: 1.2; }
+#ent .pv em { color: var(--red2); font-size: 12px; font-style: normal; }
+#ent .pv small { margin-top: 4px; color: #7a7a7a; font-size: 11px; line-height: 1.3; }
+
+#ent .add {
+  position: relative;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+}
+
+#ent .add:hover { border-color: var(--red); background: var(--red); }
+
+#ent .add .n {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 20px;
+  padding: 0 5px;
+  border-radius: 10px;
+  background: var(--red);
+  color: #fff;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+/* ---------- Resumen ---------- */
+#ent .slist { margin: 14px 0 0; padding: 0; list-style: none; max-height: 240px; overflow-y: auto; }
+
+#ent .slist li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+
+#ent .slist li b { font-weight: 600; }
+#ent .slist small { display: block; color: var(--muted); font-size: 12px; }
+#ent .slist .pr { display: flex; align-items: center; gap: 6px; font-weight: 600; white-space: nowrap; }
+#ent .slist .vacia { display: block; padding: 12px 0; border: 0; color: var(--muted); }
+
+#ent .slist .x {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1;
+}
+
+#ent .slist .x:hover { border-color: var(--red2); color: #fff; }
+#ent .calc { padding-top: 12px; }
+#ent .total { margin-top: 10px; }

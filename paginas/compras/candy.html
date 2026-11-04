@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Cinemax | Candy</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="../../css/entradas.css">
+    <link rel="stylesheet" href="../../css/candy.css">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <!------------------------ BARRA DE NAVEGACIÓN (Materialize: navbar + sidenav). ------------------------>
+    <div class="navbar-fixed">
+        <nav class="cx-nav" aria-label="Navegación principal">
+            <div class="nav-wrapper container">
+                <a href="../../index.html" class="brand-logo">CINEMAX</a>
+
+                <!-- Botón que abre el menú lateral en celular y tablet -->
+                <a href="#" data-target="sidenav" class="sidenav-trigger hide-on-large-only" aria-label="Abrir menú">
+                    <i class="material-icons">menu</i>
+                </a>
+
+                <!-- Menú en computadora -->
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="../../index.html">Inicio</a></li>
+                    <li><a href="../cartelera.html">Cartelera</a></li>
+                    <li><a href="../../index.html#estrenos">Estrenos</a></li>
+                    <li><a href="../../index.html#preventas">Preventas</a></li>
+                    <li><a href="../ayuda.html">Ayuda</a></li>
+                    <li><a href="#" class="btn waves-effect cx-ghost">Iniciar sesión</a></li>
+                    <li><a href="#" class="btn waves-effect waves-light">Crear cuenta</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Menú lateral (el nav se convierte en sidebar en celular) -->
+    <ul class="sidenav" id="sidenav">
+        <li><div class="cx-side-brand">CINEMAX</div></li>
+        <li><a href="../../index.html"><i class="material-icons">home</i>Inicio</a></li>
+        <li><a href="../cartelera.html"><i class="material-icons">movie</i>Cartelera</a></li>
+        <li><a href="../../index.html#estrenos"><i class="material-icons">new_releases</i>Estrenos</a></li>
+        <li><a href="../../index.html#preventas"><i class="material-icons">local_activity</i>Preventas</a></li>
+        <li><a href="../ayuda.html"><i class="material-icons">help_outline</i>Ayuda</a></li>
+        <li><div class="divider"></div></li>
+        <li><a href="#"><i class="material-icons">account_circle</i>Iniciar sesión</a></li>
+        <li><a href="#"><i class="material-icons">person_add</i>Crear cuenta</a></li>
+    </ul>
+
+    <!------------------------ CANDY: paso 3 de la compra. ------------------------>
+    <!-- Cada producto es una <article class="prod">. Para poner su imagen, descomentá el <img> dentro de <div class="im">. -->
+    <main id="ent" class="wrap candy">
+        <div class="steps" aria-label="Pasos de la compra">
+            <div class="st ok"><b>✓</b>Función</div><span class="sep"></span>
+            <div class="st ok"><b>✓</b>Butacas</div><span class="sep"></span>
+            <div class="st on"><b>3</b>Candy</div><span class="sep"></span>
+            <div class="st"><b>4</b>Pago</div>
+        </div>
+
+        <div id="cBody">
+            <div class="head">
+                <a class="back" id="back" href="butacas.html">‹ Volver a las butacas</a>
+                <p class="eyebrow">Paso 3 · Candy</p>
+                <h1>Suma tu candy</h1>
+                <p class="fn" id="fnChips"></p>
+            </div>
+
+            <div class="cols">
+                <div class="menu">
+                    <nav class="chips" aria-label="Categorías"><a href="#combos">Combos</a><a href="#pochoclos">Pochoclos</a><a href="#bebidas">Bebidas</a><a href="#snacks">Snacks</a><a href="#golosinas">Golosinas</a></nav>
+
+                <section id="combos">
+                    <h2>Combos</h2>
+                    <div class="pgrid">
+                    <article class="prod" data-id="combo-mega-recargado" data-name="Combo mega recargado" data-price="35730" data-old="39700">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/combo-mega-recargado.webp" alt="Combo mega recargado"> --></div>
+                        <h3>Combo mega recargado</h3>
+                        <p class="ds">1 balde de pochoclos + 2 gaseosas grandes + 1 golosina sin cargo. Incluye recarga de pochoclos y gaseosa. Imagen a modo ilustrativo.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    <article class="prod" data-id="combo-mega" data-name="Combo mega" data-price="29880" data-old="33200">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/combo-mega.webp" alt="Combo mega"> --></div>
+                        <h3>Combo mega</h3>
+                        <p class="ds">1 balde de pochoclos + 2 gaseosas grandes + 1 golosina. Imagen a modo ilustrativo.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    <article class="prod" data-id="combo-familia" data-name="Combo familia" data-price="49050" data-old="54500">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/combo-familia.webp" alt="Combo familia"> --></div>
+                        <h3>Combo familia</h3>
+                        <p class="ds">2 baldes de pochoclos + 4 gaseosas grandes + 2 golosinas. Ideal para compartir en familia. Imagen a modo ilustrativo.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    <article class="prod" data-id="combo-mega-individual" data-name="Combo mega individual" data-price="21060" data-old="23400">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/combo-mega-individual.webp" alt="Combo mega individual"> --></div>
+                        <h3>Combo mega individual</h3>
+                        <p class="ds">1 balde de pochoclos + 1 gaseosa grande. Imagen a modo ilustrativo.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    <article class="prod" data-id="combo-papas" data-name="Papas con cheddar + gaseosa" data-price="20160" data-old="22400">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/combo-papas.webp" alt="Papas con cheddar + gaseosa"> --></div>
+                        <h3>Papas con cheddar + gaseosa</h3>
+                        <p class="ds">Papas con cheddar + 1 gaseosa grande. Imagen a modo ilustrativo.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    <article class="prod" data-id="combo-nachos" data-name="Combo nachos" data-price="17100" data-old="19000">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/combo-nachos.webp" alt="Combo nachos"> --></div>
+                        <h3>Combo nachos</h3>
+                        <p class="ds">Nachos con queso + 1 gaseosa grande. Imagen a modo ilustrativo.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    </div>
+                </section>
+
+                <section id="pochoclos">
+                    <h2>Pochoclos</h2>
+                    <div class="pgrid">
+                    <article class="prod" data-id="balde" data-name="Balde de pochoclos" data-price="13500">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/balde.webp" alt="Balde de pochoclos"> --></div>
+                        <h3>Balde de pochoclos</h3>
+                        <p class="ds">1 balde de pochoclos. Imagen a modo ilustrativo.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    <article class="prod" data-id="pop-mediano" data-name="Pop mediano" data-price="9900">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/pop-mediano.webp" alt="Pop mediano"> --></div>
+                        <h3>Pop mediano</h3>
+                        <p class="ds">1 bolsa de pochoclos mediana. Imagen a modo ilustrativo.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    <article class="prod" data-id="pop-envasado" data-name="Pop envasado" data-price="7800">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/pop-envasado.webp" alt="Pop envasado"> --></div>
+                        <h3>Pop envasado</h3>
+                        <p class="ds">1 bolsa de pochoclos envasados. Producto sujeto a disponibilidad según el cine.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    </div>
+                </section>
+
+                <section id="bebidas">
+                    <h2>Bebidas</h2>
+                    <div class="pgrid">
+                    <article class="prod" data-id="recarga" data-name="Recarga vaso reutilizable" data-price="5000">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/recarga.webp" alt="Recarga vaso reutilizable"> --></div>
+                        <h3>Recarga vaso reutilizable</h3>
+                        <p class="ds">1 recarga de gaseosa válida exclusivamente con el vaso reutilizable. Disponibilidad según el cine.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    <article class="prod" data-id="bebida-grande" data-name="Bebida grande" data-price="9900">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/bebida-grande.webp" alt="Bebida grande"> --></div>
+                        <h3>Bebida grande</h3>
+                        <p class="ds">1 gaseosa 24 oz. Imagen a modo ilustrativo.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    <article class="prod" data-id="bebida-mediana" data-name="Bebida mediana" data-price="8900">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/bebida-mediana.webp" alt="Bebida mediana"> --></div>
+                        <h3>Bebida mediana</h3>
+                        <p class="ds">1 gaseosa 21 oz. Imagen a modo ilustrativo.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    <article class="prod" data-id="agua" data-name="Agua" data-price="5200">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/agua.webp" alt="Agua"> --></div>
+                        <h3>Agua</h3>
+                        <p class="ds">1 agua. Disponibilidad de marca según el cine.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    </div>
+                </section>
+
+                <section id="snacks">
+                    <h2>Snacks</h2>
+                    <div class="pgrid">
+                    <article class="prod" data-id="nachos" data-name="Nachos con queso" data-price="11300">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/nachos.webp" alt="Nachos con queso"> --></div>
+                        <h3>Nachos con queso</h3>
+                        <p class="ds">1 porción de nachos con queso. Imagen a modo ilustrativo.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    <article class="prod" data-id="pancho" data-name="Pancho" data-price="6300">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/pancho.webp" alt="Pancho"> --></div>
+                        <h3>Pancho</h3>
+                        <p class="ds">1 pancho. Imagen a modo ilustrativo.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    <article class="prod" data-id="nuggets" data-name="Nuggets de pollo (x8)" data-price="14700">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/nuggets.webp" alt="Nuggets de pollo (x8)"> --></div>
+                        <h3>Nuggets de pollo (x8)</h3>
+                        <p class="ds">Porción de 8 unidades. Imagen a modo ilustrativo.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    <article class="prod" data-id="papas" data-name="Snack de papas fritas" data-price="6000">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/papas.webp" alt="Snack de papas fritas"> --></div>
+                        <h3>Snack de papas fritas</h3>
+                        <p class="ds">1 bolsa de papas fritas clásicas. Imagen a modo ilustrativo.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    </div>
+                </section>
+
+                <section id="golosinas">
+                    <h2>Golosinas</h2>
+                    <div class="pgrid">
+                    <article class="prod" data-id="alfajor" data-name="Alfajor" data-price="4700">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/alfajor.webp" alt="Alfajor"> --></div>
+                        <h3>Alfajor</h3>
+                        <p class="ds">1 alfajor. Disponibilidad de marca según el cine.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    <article class="prod" data-id="gomitas" data-name="Gomitas moras chico" data-price="6500">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/gomitas.webp" alt="Gomitas moras chico"> --></div>
+                        <h3>Gomitas moras chico</h3>
+                        <p class="ds">1 bolsa chica de gomitas de mora. Imagen a modo ilustrativo.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    <article class="prod" data-id="confites-choco" data-name="Confites de chocolate grande" data-price="14900">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/confites-choco.webp" alt="Confites de chocolate grande"> --></div>
+                        <h3>Confites de chocolate grande</h3>
+                        <p class="ds">1 bolsa grande de confites de chocolate. Sabores: chocolate o maní, según disponibilidad.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    <article class="prod" data-id="confites-color" data-name="Confites grandes" data-price="12900">
+                        <div class="im"><!-- Imagen: <img src="../../img/Candy/confites-color.webp" alt="Confites grandes"> --></div>
+                        <h3>Confites grandes</h3>
+                        <p class="ds">1 bolsa grande de confites de colores. Imagen a modo ilustrativo.</p>
+                        <button type="button" class="ver" hidden>Ver más</button>
+                        <div class="pb"></div>
+                    </article>
+                    </div>
+                </section>
+
+                </div>
+
+                <aside class="res" aria-label="Tu compra">
+                    <p class="eyebrow">Tu compra</p>
+                    <dl>
+                        <div><dt>Película</dt><dd id="rPeli"></dd></div>
+                        <div><dt>Función</dt><dd id="rCuando"></dd></div>
+                        <div><dt>Butacas</dt><dd id="rSeats"></dd></div>
+                    </dl>
+                    <ul class="slist" id="list" aria-live="polite"></ul>
+                    <div class="calc">
+                        <p><span id="lTick"></span><b id="pTick"></b></p>
+                        <p><span id="lCandy"></span><b id="pCandy"></b></p>
+                    </div>
+                    <div class="total">
+                        <span>Total</span>
+                        <strong id="total"></strong>
+                    </div>
+                    <a class="go" id="go" href="#">Continuar al pago ›</a>
+                    <p class="note">El candy es opcional. Lo retirás en el candy bar antes de la función.</p>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <a class="logo" href="../../index.html">CINEMAX</a>
+            <p style="margin:8px 0 0">Tu sala de cine favorita, con la mejor imagen y sonido.</p>
+            <div class="copy">© 2026 Cinemax. Todos los derechos reservados. Clasificaciones: ATP · +13 · +16 · +18</div>
+        </div>
+    </footer>
+
+    <script src="../../javascript/precios.js"></script>
+    <script src="../../javascript/candy.js"></script>
+</body>
+</html>

@@ -1,0 +1,397 @@
+/* ==========================================================================
+   1. VARIABLES Y CONFIGURACIÓN GLOBAL
+   ========================================================================== */
+:root {
+  --bg: #0a0a0a;
+  --panel: #111111;
+  --line: #2a2a2a;
+  --text: #f2f2f2;
+  --muted: #a8a8a8;
+  --red: #e50914;
+  --red2: #ff5a63;
+  --gold: #f5b301;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+html {
+  scroll-padding-top: 70px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--red2);
+  outline-offset: 2px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--red);
+}
+
+
+/* ==========================================================================
+   2. PASOS DE COMPRA Y ENCABEZADO
+   ========================================================================== */
+#ent .steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 26px 0 8px;
+}
+
+#ent .st {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+#ent .st b {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#ent .st.on {
+  color: #fff;
+}
+
+#ent .st.on b {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+#ent .sep {
+  width: 30px;
+  height: 1px;
+  background: var(--line);
+}
+
+#ent .head {
+  padding: 26px 0 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+#ent .back {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+#ent .back:hover {
+  color: #fff;
+}
+
+#ent .eyebrow {
+  margin: 18px 0 6px;
+  color: var(--red2);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+#ent h1 {
+  margin: 0 0 10px;
+  font-size: clamp(28px, 4.5vw, 40px);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+#ent .fn {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  color: #d8d8d8;
+  font-size: 15px;
+}
+
+#ent .fn span + span::before {
+  content: "·";
+  margin: 0 10px;
+  color: var(--muted);
+}
+
+
+/* ==========================================================================
+   3. COLUMNAS: ELECCIÓN (IZQUIERDA) Y RESUMEN (DERECHA)
+   ========================================================================== */
+#ent .cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 48px;
+  align-items: start;
+  padding: 8px 0 80px;
+}
+
+#ent h2 {
+  margin: 34px 0 14px;
+  padding-left: 12px;
+  border-left: 4px solid var(--red);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+#ent .list {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  overflow: hidden;
+}
+
+#ent .op {
+  position: relative;
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  font-size: 15px;
+  cursor: pointer;
+  transition: background .15s;
+}
+
+#ent .op:last-child {
+  border-bottom: 0;
+}
+
+#ent .op:hover {
+  background: #171717;
+}
+
+#ent .op input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#ent .op:focus-within {
+  outline: 2px solid var(--red2);
+  outline-offset: -2px;
+}
+
+#ent .rd {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #5a5a5a;
+  border-radius: 50%;
+}
+
+#ent .op.on {
+  background: #170c0d;
+}
+
+#ent .op.on::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--red);
+}
+
+#ent .op.on .rd {
+  border-color: var(--red);
+  box-shadow: inset 0 0 0 4px var(--panel), inset 0 0 0 9px var(--red);
+}
+
+#ent .tx b {
+  display: block;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+#ent .tx small {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+#ent .pr {
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+#ent .op.on .pr {
+  color: #fff;
+}
+
+
+/* ==========================================================================
+   4. RESUMEN DE LA COMPRA
+   ========================================================================== */
+#ent .res {
+  position: sticky;
+  top: 84px;
+  margin-top: 34px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+#ent .res .eyebrow {
+  margin: 0 0 14px;
+}
+
+#ent .res dl {
+  margin: 0;
+}
+
+#ent .res dl div {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+#ent .res dt {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+#ent .res dd {
+  margin: 2px 0 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+#ent .calc {
+  padding: 14px 0 4px;
+}
+
+#ent .calc p {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 8px;
+  color: #d8d8d8;
+  font-size: 14px;
+}
+
+#ent .calc b {
+  color: #fff;
+  font-weight: 600;
+}
+
+#ent .total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 6px 0 20px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+#ent .total span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+#ent .total strong {
+  color: var(--gold);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+#ent .go {
+  display: block;
+  width: 100%;
+  padding: 13px 20px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--red);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+
+#ent .go:hover {
+  background: #c40812;
+}
+
+#ent .note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   5. FOOTER Y RESPONSIVE
+   ========================================================================== */
+footer {
+  background: #050505;
+  border-top: 3px solid var(--red);
+  padding: 32px 0 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.copy {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  color: #7a7a7a;
+  font-size: 13px;
+}
+
+@media(max-width: 900px) {
+  .wrap { padding: 0 20px; }
+  #ent .cols { grid-template-columns: 1fr; gap: 0; }
+  #ent .res { position: static; }
+}
+
+@media(max-width: 560px) {
+  #ent .sep { width: 12px; }
+  #ent .st { font-size: 13px; }
+  #ent .op { grid-template-columns: 20px minmax(0, 1fr); padding: 16px; }
+  #ent .pr { grid-column: 2; }
+}
