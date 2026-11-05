@@ -587,6 +587,7 @@ button.chip { cursor: pointer; }
 .page-footer p { margin: 0 0 8px; }
 .page-footer ul { margin: 0; }
 .page-footer li { margin-bottom: 8px; }
+.page-footer li a { color: var(--muted); transition: color .15s; }
 .page-footer a:hover { color: #fff; }
 
 .page-footer .cx-logo {
@@ -598,16 +599,122 @@ button.chip { cursor: pointer; }
   letter-spacing: 3px;
 }
 
+/* ---------- Suscripción ---------- */
+.page-footer .cx-news {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 32px;
+  margin-bottom: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.page-footer .cx-news h6 { margin-bottom: 4px; font-size: 16px; }
+.page-footer .cx-news p { margin: 0; }
+.page-footer .cx-form { display: flex; gap: 10px; flex: 1 1 320px; max-width: 460px; }
+
+.page-footer .cx-news input[type="email"],
+.page-footer .cx-news input[type="email"]:focus {
+  flex: 1;
+  height: 44px;
+  margin: 0;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #101010;
+  box-shadow: none;
+  color: #fff;
+  font-size: 14px;
+}
+
+.page-footer .cx-news input[type="email"]:focus { border-color: var(--red2); }
+
+.page-footer .cx-form button {
+  height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--red);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.page-footer .cx-form button:hover { background: #c40812; }
+.page-footer .cx-ok { margin: 0; color: #fff; font-weight: 600; }
+
+/* ---------- Información del cine (formatos, pagos, clasificaciones) ---------- */
+.page-footer .cx-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.page-footer .cx-info h6 { margin-bottom: 10px; }
+.page-footer .cx-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.page-footer .cx-tags span {
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  color: #cfcfcf;
+  font-size: 12.5px;
+}
+
+/* ---------- Redes sociales ---------- */
+.page-footer .cx-social { display: flex; gap: 10px; margin-top: 16px; }
+
+.page-footer .cx-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: #cfcfcf;
+  transition: background .15s, border-color .15s, color .15s;
+}
+
+.page-footer .cx-social a:hover { border-color: var(--red); background: var(--red); color: #fff; }
+.page-footer .cx-social svg { width: 18px; height: 18px; }
+
+/* ---------- Barra de abajo ---------- */
 .page-footer .footer-copyright {
   margin-top: 20px;
+  padding: 16px 0;
+  min-height: 0;
   border-top: 1px solid var(--line);
   background: transparent;
   color: #7a7a7a;
   font-size: 13px;
+  line-height: 1.5;
 }
 
-.page-footer .footer-copyright .container { color: #7a7a7a; }
+.page-footer .footer-copyright .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  color: #7a7a7a;
+}
 
+.page-footer .footer-copyright a { margin-left: 18px; color: #7a7a7a; }
+.page-footer .footer-copyright a:first-child { margin-left: 0; }
+.page-footer .footer-copyright a:hover { color: #fff; }
+
+@media (max-width: 992px) {
+  .page-footer .row .col { margin-bottom: 24px; }
+}
+
+@media (max-width: 600px) {
+  .page-footer .footer-copyright a { margin: 0 18px 0 0; }
+}
 
 /* ======================= PÁGINA DE PELÍCULA ======================= */
 /* ----------Afiche + sinopsis ---------- */
